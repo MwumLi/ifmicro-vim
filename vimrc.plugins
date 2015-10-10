@@ -152,7 +152,7 @@
     let g:indent_guides_auto_colors = 0 "禁止默认颜色
     " }
     " colors {
-        autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red ctermbg=lightgrey
+        autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red ctermbg=grey
         autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=darkgrey
     " }
 " }
@@ -211,12 +211,15 @@
                 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'                
             " }
             " keys {
-                " 使补全窗口消失
+                " hide popup menu when the popup emnu is visible
                 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
                 function! s:my_cr_function()
                     return pumvisible() ? "\<C-y>" : "\<CR>"
                 endfunction
-                " 上下选择
+                " 下面这句加入配置, 就会出现问题, 好奇怪
+                "inoremap <expr> <ESC> pumvisible() ? "\<C-y>\<Esc>" : "\<Esc>"
+
+                " Up/Down to choose in popup window
                 inoremap <expr> <Down>  pumvisible() ? "\<C-n>" : "\<Down>"
                 inoremap <expr> <Up>  pumvisible() ? "\<C-p>" : "\<Up>"
             " }
@@ -335,11 +338,12 @@
             let g:syntastic_check_on_wq=1
         " }
         " keys {
-            nmap <F6> :Errors<CR>
+            noremap <F6> :Errors<CR>
+            noremap <F7> :lclose<CR>
             nmap <Leader>sm :SyntasticToggleMode<CR>
         " }
     " } end syntastic config
-        "
+    
 " } end 补全
 
 " vim-markdown {

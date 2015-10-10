@@ -5,7 +5,7 @@
     let mapleader=";"
 " }
 
-
+"let g:ifmicro_ycm_enable=1
 " plugins {
     " 使用 Vundle 进行插件管理
     if filereadable(expand("~/.vimrc.plugins"))

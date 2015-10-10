@@ -1,96 +1,136 @@
-" ***窗口关闭***
-nmap qq :q!<CR> " 放弃更改并关闭当前窗口
-nmap wq :wq!<CR> "保存并关闭当前窗口
-nmap <Leader>wa :waq! "保存全部窗口并关闭
-nmap sp :w!<CR> "保存
-nmap wa :wa<CR> "保存所有窗口
+" window-close {
+    " discard the changes and close the current window
+    nmap qq :q!<CR>         
+    " 用户命令
+" :sp -- 上下分割窗口
+" :vsp -- 左右分割窗口" save changes and close the current window 
+    nmap wq :wq!<CR>    nmap sp :w!<CR>  "保存
+    " save  changes in all windows
+    nmap wa :wa!<CR> "保存所有窗口
+" }
 
-" ***窗口移动***
-nnoremap <Leader>lw <C-W>l	" 跳转至右方的窗口
-nnoremap <Leader>hw <C-W>h	" 跳转至左方的窗口
-nnoremap <Leader>kw <C-W>k	" 跳转至上方的窗口
-nnoremap <Leader>jw <C-W>j	" 跳转至下方的窗口
+" window-move {
+    " jump to right window
+    nnoremap <Leader>lw <C-W>l	" 跳转至右方的窗口
+    " jump to left window
+    nnoremap <Leader>hw <C-W>h	" 跳转至左方的窗口
+    " jump to top window
+    nnoremap <Leader>kw <C-W>k	" 跳转至上方的窗口
+    " jump to bottom window
+    nnoremap <Leader>jw <C-W>j	" 跳转至下方的窗口
+" }
 
-" ***配置文件生效***
-noremap <Leader>s :source $HOME/.vimrc<CR>
+" window-split {
+    " 用户命令
+" :sp -- 上下分割窗口
+    
+" :vsp -- 左右分割窗口
+" }
+" source-file {
+    " Make the configuration files take effect
+    noremap <Leader>sv source $HOME/.vimrc<CR>
+" }
 
-" ***跳转***
-noremap 1 0	" 跳到行首
-noremap 0 $	" 跳到行尾 
+" move {
+    " jump to the start of line
+    noremap 1 0	
+    " jump to the end of line
+    noremap 0 $	
+    " jump loop in Pairing characters , such '( ... )', '{  }'
+    nmap 5 %
 
-" ***用户自定义函数***
-nmap <Leader>cr :call Toggle_CursorLine()<CR>  "切换行光标线
-nmap <Leader>cl :call Toggle_CursorColumn()<CR> "切换列光标线
-nmap <Leader>n :call Toggle_Num()<CR> "切换行号
-nmap <Leader>h :call Toggle_Help()<CR> "切换中英文帮助
+" }
 
-" 插入当前时间
-nmap 'd "=strftime("%Y-%m-%d %H:%M:%S")<CR>p
+" toggle {
+    " toggle row cursor line
+    nmap <Leader>cr :call Toggle_CursorLine()<CR>
+    " toggle column cursor line
+    nmap <Leader>cl :call Toggle_CursorColumn()<CR>
+    " toggleing display line numbers
+    nmap <Leader>n :call Toggle_Num()<CR> "切换行号
+    " toggleing chinese/english help for vim 
+    " try to ':help vim' after press '<Leader>h' in normal mode
+    nmap <Leader>h :call Toggle_Help()<CR> "切换中英文帮助
+" }
 
-" 设置快捷键将选中文本块复制至系统剪贴板
+" 插入当前时间 {
+    "  nmap 'd "=strftime("%Y-%m-%d %H:%M:%S")<CR>p
+    " enter "date" to get time or date by snips
+" }
+
+" clipborard {
+" copy selected area from vim to the system clipborard in Visual mode
 vnoremap <Leader>y "+y
-" 设置快捷键将系统剪贴板内容粘贴至 vim
+" paste content from the system clipborard to vim
 nmap <Leader>p "+p
 
-" 定义快捷键在结对符之间跳转，助记pair
-nmap 5 %
+" }
 
+" vim-indent-guides {
+    " <Leader>ig -- toggle indent visual
+" }
 
-" *** 插件的快捷键 ***
-" <Leader>ig -- Indent Guides Color
+" vim-signature {
+    " mx        --  Toggle mark 'x' and display it in the leftmost colu
+    " dmx       --  Remove mark 'x' where x is a-zA-Z
+    " m,        --  Place the next available mark
+    " m.        --  If no mark on line, place the next available mark. Otherwise,
+    "               remove (first) existing mark.
+    " m-        --  Delete all marks from the current line
+    " m<Space>  --  Delete all marks from the current buffer
+    " m/        --  Open location list and display marks from current buffer
+"}
+
+" nerdcommenter {
+    " <Leader>cc -- 注释当前行
+    " <leader>cm -- 只用一组符号来注释
+    " <leader>cy -- 注释并复制
+    " <leader>cs -- 优美的注释
+    " <leader>cu -- 取消注释
+" }
+
+" DrawIt -- 逗比模式 {
+    " <Leader>di -- to start DrawIt and
+    " <Leader>ds -- to stop  DrawIt.
+" }
+
+" neocomplete {
+    " <CR> --  hide popup menu
+    " <ESC> -- hide popup menu and enter to normal
+
+" }
+
+" YouCompleteMe {
+    " <Leader>; -- enable OmniCppComplete engine
+    " ArrowUp/<C-p> -- Up to choose in popup window
+    " ArrowDown/<C-n> -- Down to choose in popup window
+" }
+
+" <TAB> -- performs the snippet completion or jump to next placeholder
+
+" Ultisnips {
+    " <leader>gg -- go to definisiton or declaration
+    " <Leader>gl -- go to definisiton
+    " <Leader>gg -- go to declaration
+    " <F4>       -- open ycm diagnosis info
+" }
+
+" Ctrl { -- 文件查找
+    " <F5> --  清除当前目录下的缓存，获取新的结构
+    " <c-f>/<C-b> -- 切换查找模式(所有文件, 最近访问的文件, 当前缓冲区中的文件)
+    " <c-d> -- 切换匹配文件名或者全路径
+    " <c-r> -- switch to regexp mode
+    " <c-j> -- 结果列表中向上移动
+    " <c-k> -- 结果列表中向下移动
+    " <c-n>/<c-p> -- select the next/previous string in the prompt's history.
+    " <c-y> -- 创造新文件(但貌似不起作用)
+    " <c-z> -- mark/unmark multiple files and <c-o> to open them.
+
+" syntastic -- 语义检查 {
+    " <F6>          -- popup the  location-list and display the error messages
+    " <F7>          -- close location list window
+    " <Leader>sm    -- 激活/关闭语义检查
+" }
 "
-" marks
-" mx    --  Toggle mark 'x' and display it in the leftmost colu
-" dmx   --  Remove mark 'x' where x is a-zA-Z
-" m,    --  Place the next available mark
-" m.    --  If no mark on line, place the next available mark. Otherwise,
-" remove (first) existing mark.
-" m-    -- Delete all marks from the current line
-" m<Space> -- Delete all marks from the current buffer
-" m/    --  Open location list and display marks from current buffer
-
-" nerdcommenter -- 注释
-" <Leader>cc -- 注释当前行
-" <leader>cm -- 只用一组符号来注释
-" <leader>cy -- 注释并复制
-" <leader>cs -- 优美的注释
-" <leader>cu -- 取消注释
 "
-" DrawIt -- 逗比模式
-" <Leader>di to start DrawIt and
-" <Leader>ds to stop  DrawIt.
-"
-" ***neocomplete***
 
-"noremap <expr><C-g> neocomplete#smart_close_popup()
-"inoremap <expr> <Esc>   pumvisible() ? "\<C-y>\<Esc>" : "\<Esc>"
-
-" *** YCM and Ultisnips***
-" YCM 集成 OmniCppComplete 补全引擎，设置其快捷键             
- inoremap <leader>; <C-x><C-o>
-" Down/Ctrl+n -- 下一条补全
-" Up/Ctrl+p -- 上一条补全
-" TAB -- 补全/跳到下一个编辑处
-" S-TAB -- 跳到上一个编辑处
- 
-" If you want :UltiSnipsEdit to split your window.
-
-"nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
-"nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-"nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-"nmap <F4> :YcmDiags<CR>
-
-" Ctrl{ -- 文件查找
-" <F5> --  清除当前目录下的缓存，获取新的结构
-" <c-f>/<C-b> -- 切换查找模式(所有文件, 最近访问的文件, 当前缓冲区中的文件)
-" <c-d> -- 切换匹配文件名或者全路径
-" <c-r> -- switch to regexp mode
-" <c-j> -- 结果列表中向上移动
-" <c-k> -- 结果列表中向下移动
-" <c-n>/<c-p> -- select the next/previous string in the prompt's history.
-" <c-y> -- 创造新文件(但貌似不起作用)
-" <c-z> -- mark/unmark multiple files and <c-o> to open them.
-
-" syntastic -- 语义检查
-" <F5> -- 错误窗口
-" <Leader>sm -- 激活/关闭语义检查
