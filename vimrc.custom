@@ -1,8 +1,8 @@
-" 不兼容vi
+"  not compatible with vi
 set nocompatible 
 
 
-" 显示 {
+" appearance {
     set t_Co=256        " 开启 256 色
     set number          " 行号
     set ruler           " 标尺
@@ -13,7 +13,7 @@ set nocompatible
 " }
 
 
-" 搜索 {
+" search {
     set incsearch   " 开启实时搜索
     set ignorecase  " 搜索时大小写不敏感
     set hlsearch    " 高亮显示搜索结果
@@ -21,7 +21,7 @@ set nocompatible
 " }
 
 
-" 缩进 {
+" indent {
     filetype indent on  " 自适应不同语言的智能缩进
     set expandtab 	    " 将制表符扩展为空格
     set tabstop=4 	    " 设置编辑制表符占用空格数
@@ -33,7 +33,7 @@ set nocompatible
 
 
 
-" 主题 {
+" theme {
     set t_Co=256    " required
     
     colorscheme molokai
