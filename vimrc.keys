@@ -28,7 +28,7 @@
 " }
 " source-file {
     " Make the configuration files take effect
-    noremap <Leader>sv source $HOME/.vimrc<CR>
+    noremap <Leader>sv :source $HOME/.vimrc<CR>
 " }
 
 " move {
