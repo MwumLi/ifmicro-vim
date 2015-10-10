@@ -11,7 +11,7 @@ cur_position=`pwd`
 # if the install.sh isn't project, you must specify a ifmicro_vim path
 ifmicro_vim=`pwd`
 # install path , the default is $HOME
-root_dir="$HOME/c++/test"
+root_dir="$HOME"
 
 function msg() {
     printf '%b\n' "$1" >&2
