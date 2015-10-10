@@ -10,7 +10,6 @@ cur_position=`pwd`
 # the project path -- must be absolute path
 # if the install.sh isn't project, you must specify a ifmicro_vim path
 ifmicro_vim=`pwd`
-ifmicro_vim='/home/vagrant/synced_folder/WorkSpace/ifmicro-code/ifmicro-vim'
 # install path , the default is $HOME
 root_dir="$HOME/c++/test"
 
