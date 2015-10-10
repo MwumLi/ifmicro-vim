@@ -1,0 +1,53 @@
+"-------------用户自定义函数--------------
+
+" 显示/隐藏行号
+function! Toggle_Num()
+    let number = &number
+    if number
+        set nonumber
+    else
+        set number
+    endif
+endfunction
+
+" 显示/隐藏行光标线
+function! Toggle_CursorLine()
+    let cursorline = &cursorline
+    if cursorline
+        set nocursorline
+    else
+        set cursorline
+    endif
+endfunction
+
+" 显示/隐藏列光标线
+function! Toggle_CursorColumn()
+    let cursorcolumn = &cursorcolumn
+    if cursorcolumn
+        set nocursorcolumn
+    else
+        set cursorcolumn
+    endif
+endfunction
+
+" 切换中英文帮助
+function! Toggle_Help()
+    let helplang = &helplang
+    if helplang == "en"
+        set helplang=cn
+    else
+        set helplang=en
+    endif
+endfunction
+
+
+" :function 列出所有用户自定义函数及其参数
+" :function func-name 查看函数源码
+" 当定义一个已经存在函数时候, 需要在 `function! func-name` 来定义  
+" http://www.ibm.com/developerworks/cn/views/linux/libraryview.jsp?search_by=%E4%BD%BF%E7%94%A8%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99+Vim+%E7%BC%96%E8%BE%91%E5%99%A8
+" http://vimcdoc.sourceforge.net/doc/usr_41.html
+" http://www.ibm.com/developerworks/cn/linux/l-vim-script-1/
+" &option 获取一个选项的值
+" g:syntax_on
+" 用户自定义函数
+

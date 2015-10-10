@@ -1,0 +1,379 @@
+" Vundle start {
+    set nocompatible    " be iMproved, required
+    filetype off        " required
+
+    " set the runtime path to include Vundle and initialize
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+    " alternatively, pass a path where Vundle should install plugins
+    " call vundle#begin('~/some/path/here')
+
+    " let Vundle manage Vundle, required
+    Plugin 'gmarik/Vundle.vim'
+ 
+    " 窗口 {
+        " 管理其他窗口
+        Plugin 'MwumLi/WinManager'  
+        " 展示当前文件定义的函数，变量等标签
+        Plugin 'vim-scripts/taglist.vim'
+        " 快速查找文件(当前目录及子目录, 最近访问文件, 当前缓冲区中的文件)
+        Plugin 'kien/ctrlp.vim' 
+        " 状态栏--可以配合多个插件一起使用
+        Plugin 'bling/vim-airline'
+    " }
+   
+    " 缩进可视化
+    " https://github.com/nathanaelkane/vim-indent-guides
+    Plugin 'nathanaelkane/vim-indent-guides'
+
+    " 可视化显示 marks
+    " toggle,display and navigate marks
+    " https://github.com/kshenoy/vim-signature
+    Plugin 'kshenoy/vim-signature'
+
+    " 注释 {
+        Plugin 'scrooloose/nerdcommenter'
+        Plugin 'DrawIt' "逗比模式
+    " }
+    " 补全 {
+        if !exists('g:ifmicro_ycm_enable')
+            Plugin 'Shougo/neocomplete.vim'
+            Plugin 'Shougo/neosnippet'
+            Plugin 'Shougo/neosnippet-snippets'
+        else
+            Plugin 'Valloric/YouCompleteMe'
+            " python for ycm
+            Plugin 'davidhalter/jedi' 
+            Plugin 'SirVer/ultisnips'
+        endif
+        Plugin 'honza/vim-snippets' " 一些代码片段库
+        Plugin 'scrooloose/syntastic' " 语义分析
+    " }
+
+
+
+    " Markdown
+    Plugin 'plasticboy/vim-markdown'
+
+    " 转化编码的插件
+    Plugin 'MwumLi/fencview'
+
+    " css颜色预览
+    Plugin 'gorodinskiy/vim-coloresque'
+
+    " 格式化(Visual 模式, 选中区域, Tab /=, 基于 = 两边对齐)
+    Plugin 'godlygeek/tabular'
+
+    " All of your Plugins must be added before the following line
+    call vundle#end() " required
+
+    " 开启文件类型自动识别,启用文件类型插件,启用针对文件类型的自动缩进
+    filetype plugin indent on   "required
+    " To ignore plugin indent changes, instead use:
+    " filetype plugin on
+" }
+
+" WinManager {
+    " 设置要管理的插件
+    let g:winManagerWindowLayout='FileExplorer,TagList' 
+    " 如果所有编辑文件都关闭了，退出vim
+    let g:persistentBehaviour=0 
+    let g:defaultExplorer=1
+    let g:winManagerWidth=25
+    nmap wm :WMToggle<cr>
+" }
+"
+" taglist.vim { 
+    " settings {
+        " 设置ctags位置,taglist依赖于ctags.
+        let Tlist_Ctags_Cmd='ctags'	 
+        " 窗口显示位置:[0-->Left 1--Right]
+        let Tlist_Use_Right_Window=0	    
+        " 显示文件个数: [ 0-->more 1-->one ]
+        let Tlist_Show_One_File=1	
+        " 非当前文件，函数列表折叠隐藏  
+        let Tlist_File_Fold_Auto_Close=1 
+        " 打开 taglist 光标停留在 taglist 窗口
+        let Tlist_GainFocus_On_ToggleOpen=1 
+        " 当taglist是最后一个分割窗口时，自动退出vim
+        let Tlist_Exit_OnlyWindow=1
+        "实施更新tags:1(是)0(否)  
+        let Tlist_Process_File_Always=1	    
+        let Tlist_Inc_Winwidth=0  
+    " }
+    " keys {
+        " 打开/关闭标签浏览器
+        nmap tl :Tlist<CR>		    
+        " 按下<F5>生成tags,并且更新taglist
+        map <F5> :!ctags -R --c++-kinds=+p --fields=+ialS --extra=+q .<CR><CR> :TlistUpdate<CR>
+    " }
+" }
+
+" ctrlp.vim {
+    " 文件查找
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+    let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+      \ 'file': '\v\.(exe|so|dll|jpg|png|jpeg)$',
+      \ }
+    "let g:ctrlp_match_window = 'top,order:btt,min:1,max:10,results:20'
+" }
+
+" vim-airline {
+    " :help airline
+    " settings {
+        " 启用底部状态栏
+        set laststatus=2
+        " 启用一些扩展, 比如tab页, branch分支
+        let g:airline_extensions = ['tabline']
+        let g:airline#extensions#branch#enabled = 1 
+        " 去除 trailing, 就是底部状态栏最后一部分内容
+        let g:airline_section_warning=''
+        " 使用 poweline 打过补丁的字,看起来会好看
+        let g:airline_powerline_fonts = 1
+        " 启用 airline 主题
+        " 默认是和 vim 主题名一致的主题
+        " 可在 ~/.vim/bundle/vim-airline/autoload/airline/themes/ 寻找
+        " 主题截图地址 https://github.com/bling/vim-airline/wiki/Screenshots
+        let g:airline_theme='dark'     
+    " }
+    " keys {
+        " 映射切换buffer的键位
+        nnoremap [b :bp<CR>
+        nnoremap ]b :bn<CR>
+    " }
+" }
+
+" vim-indent-guides {
+    " settings {
+    let g:indent_guides_enable_on_vim_startup=1 " 随 vim 自启动
+    let g:indent_guides_start_level=2 " 从第二层开始可视化显示缩进
+    let g:indent_guides_guide_size=1 " 色块宽度
+    let g:indent_guides_auto_colors = 0 "禁止默认颜色
+    " }
+    " colors {
+        autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red ctermbg=lightgrey
+        autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=darkgrey
+    " }
+" }
+
+" 补全 {
+    if !exists('g:ifmicro_ycm_enable')
+        " neocomplete.vim {
+            " setting {
+                " Enable AutocomplPop
+                let g:acp_enableAtStartup=1
+                " Use neocomplete
+                let g:neocomplete#enable_at_startup = 1
+                " Use smartcase
+                let g:neocomplete#enable_smart_case = 1
+                let g:neocomplete#enable_auto_delimiter = 1
+                let g:neocomplete#max_list = 15
+                let g:neocomplete#force_overwrite_completefunc = 1
+                " Set minimum syntax keyword length.
+                let g:neocomplete#sources#syntax#min_keyword_length = 3
+                let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+    
+    
+                " Define dictionary.
+                let g:neocomplete#sources#dictionary#dictionaries = {
+                    \ 'default' : '',
+                    \ 'vimshell' : $HOME.'/.vimshell_hist',
+                    \ 'scheme' : $HOME.'/.gosh_completions'
+                    \ }
+    
+                " Define keyword.
+                if !exists('g:neocomplete#keyword_patterns')
+                    let g:neocomplete#keyword_patterns = {}
+                endif
+                let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+                " AutoComplPop like behavior.
+                " 自动会选中第一个补全
+                let g:neocomplete#enable_auto_select = 1
+
+                " Enable heavy omni completion.
+                autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+                autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+                autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+                autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+                autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+                " Enable heavy omni completion.
+                if !exists('g:neocomplete#sources#omni#input_patterns')
+                  let g:neocomplete#sources#omni#input_patterns = {}
+                endif
+                let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+                let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+                let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+                " For perlomni.vim setting.
+                " https://github.com/c9s/perlomni.vim
+                let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'                
+            " }
+            " keys {
+                " 使补全窗口消失
+                inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+                function! s:my_cr_function()
+                    return pumvisible() ? "\<C-y>" : "\<CR>"
+                endfunction
+                " 上下选择
+                inoremap <expr> <Down>  pumvisible() ? "\<C-n>" : "\<Down>"
+                inoremap <expr> <Up>  pumvisible() ? "\<C-p>" : "\<Up>"
+            " }
+        " }
+        " neosnippet {
+            " settings {
+                " Tell Neosnippet about the other snippets
+                let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets/'
+                let g:go_snippet_engine = "neosnippet"
+            " }
+            " keys {
+                " 增强tab键用于插入代码片段
+                " 插入模式时扩展代码片段
+                imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+                 \ "\<Plug>(neosnippet_expand_or_jump)"
+                 \: pumvisible() ? "\<C-n>" : "\<TAB>"
+            " }
+        " }
+    else
+        " YouCompleteMe {
+            " settings { 
+                " Enable AutocomplPop
+                " 默认选中第一个补全
+                let g:acp_enableAtStartup=1
+                " enable completion from tags
+                " 使用 ctags 生成的 tags 文件
+                let g:ycm_collect_identifiers_from_tags_files = 1
+                " 从第一个键入字符就开始罗列匹配项
+                let g:ycm_min_num_of_chars_for_completion=1
+                " 配置默认的ycm_extra_conf.py
+                " 当项目中没有ycm配置文件, 将最终使用它
+                let g:ycm_global_ycm_extra_conf ="~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+                " 打开vim时不再询问是否加载ycm_extra_conf.py配置
+                let g:ycm_confirm_extra_conf=0
+                " 补全功能在注释中同样有效
+                let g:ycm_complete_in_comments=1
+                " 语法关键字补全
+                let g:ycm_seed_identifiers_with_syntax=1
+                " 错误和警告标识
+                let g:ycm_error_symbol = '>>'
+                let g:ycm_warning_symbol = '>*'
+                
+                " Enable omni completion.
+                autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+                autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+                autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+                autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+                autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+                autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+                autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+                " 不用分割子窗口显示 neosnippet，只显示补全列表
+                set completeopt-=preview
+
+            " }
+            " keys { 
+                " 下一个选项
+                let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+                " 上一个选项
+                let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+                " <C-Space>
+                " 补全 C 语言全局函数
+                let g:ycm_key_invoke_completion = '<C-a>'
+                " YCM 集成 OmniCppComplete 补全引擎，设置其快捷键
+                inoremap <leader>; <C-x><C-o>
+                " 跳转到定义
+                nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+                " 跳转到声明
+                nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+                " 跳转到定义 或 跳转到声明
+                nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+                " 打开location-list来显示警告和错误的信息
+                nmap <F4> :YcmDiags<CR>
+
+                " YCM提供的跳跃功能采用了vim的jumplist，往前跳和往后跳的快捷键为Ctrl+O以及Ctrl+I。
+            " }
+            " colors {
+                 " 菜单
+                highlight Pmenu  ctermfg=darkgray ctermbg=0
+                " 选中项
+                highlight PmenuSel ctermfg=yellow ctermbg=darkgray 
+            " }
+
+        " }
+        "
+        " ultisnips {
+            " settings {
+                " If you want :UltiSnipsEdit to split your window.
+                " let g:UltiSnipsEditSplit="vertical"
+                " Snippet Search Path : `runtimpath/`下的子目录
+                " :echo &runtimepath
+                 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+            " }
+            " keys {
+                " If you want :UltiSnipsEdit to split your window.
+                let g:UltiSnipsExpandTrigger="<TAB>"
+                let g:UltiSnipsJumpForwardTrigger="<TAB>"
+                let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
+            " }
+        " }
+        
+        " syntastic {
+            " 因为Python已经有pylint来检查, 而且syntastic检查Python会在保存时有很长时间的卡顿, 所以禁用它对Python文件的检查
+            let g:syntastic_ignore_files=[".*\.py$"]
+        " }
+    endif
+    " syntastic {
+        " settings {
+            " 设置错误符号
+            let g:syntastic_error_symbol='✗'
+            " 设置警告符号
+            let g:syntastic_warning_symbol='⚠'
+            " 是否在打开文件时检查
+            let g:syntastic_check_on_open=1
+            " 是否在保存文件后检查
+            let g:syntastic_check_on_wq=1
+        " }
+        " keys {
+            nmap <F6> :Errors<CR>
+            nmap <Leader>sm :SyntasticToggleMode<CR>
+        " }
+    " } end syntastic config
+        "
+" } end 补全
+
+" vim-markdown {
+    " settings {
+        let g:vim_markdown_folding_disabled=1
+        let g:vim_markdown_no_default_key_mappings=1
+        " 支持 LaTex math
+        let g:vim_markdown_math=1
+        " 高亮 YAML frontmatter for jekyll
+        let g:vim_markdown_frontmatter=1
+        let g:vim_markdown_initial_foldlevel=1
+        au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
+    " }
+    "
+    " keys {
+        nmap ,m :Toc<CR>
+    " }
+" }
+
+" fencview {
+"   " settings {
+       " 开启自动编码检测
+        let g:fencview_autodetect=1
+    " }
+    "
+    " keys {
+        " 当用正确的编码打开后，执行这个快捷键，转化编码为utf-8,并保存
+        nmap ,t :set fenc=utf-8<CR>:w<CR>
+    " }
+" }
+
+
+" ******************************************************************************
+set tags +=/usr/include/tags 	
+set tags +=/usr/include/c++/tags 
+set tags +=./tags
+

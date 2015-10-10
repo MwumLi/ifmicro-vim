@@ -1,0 +1,48 @@
+" 不兼容vi
+set nocompatible 
+
+
+" 显示 {
+    set t_Co=256        " 开启 256 色
+    set number          " 行号
+    set ruler           " 标尺
+    set cursorline      " 行光表现
+    set cursorcolumn    " 列光标线
+    set laststatus=2    " 总是显示状态栏
+
+" }
+
+
+" 搜索 {
+    set incsearch   " 开启实时搜索
+    set ignorecase  " 搜索时大小写不敏感
+    set hlsearch    " 高亮显示搜索结果
+    set wildmenu    " 开启 Vim 自身命令行模式智能补全
+" }
+
+
+" 缩进 {
+    filetype indent on  " 自适应不同语言的智能缩进
+    set expandtab 	    " 将制表符扩展为空格
+    set tabstop=4 	    " 设置编辑制表符占用空格数
+    set shiftwidth=4    " 设置格式化时制表符占用空格数
+    set softtabstop=4   " 让 vim 把连续数量的空格视为一个制表符
+    set smarttab        " 按一下 Backspace 就删除 4 个空格
+" }
+
+
+
+
+" 主题 {
+    set t_Co=256    " required
+    
+    colorscheme molokai
+
+    if !exists('g:ifmicro_dark_color_tone_enable')
+        set background=light
+    else
+        set background=dark
+    endif
+" }
+
+
