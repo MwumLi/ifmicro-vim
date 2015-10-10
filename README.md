@@ -16,7 +16,7 @@ But you can try it, don't worry it will  make a bad influence for you.
 
 ## Quick install
 
-    $ git clone -b ifmicro_vim https://www.github.com/MwumLi/ifmicro_code.git 
+    $ git clone -b master https://github.com/MwumLi/ifmicro-vim.git
     $ cd ifmicro_code && ./install.sh
     
 ## Load order
