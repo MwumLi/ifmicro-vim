@@ -30,10 +30,10 @@ vim plugins and them configuration, key maps
 2. `.vimrc.custom`  
 vim's configuration , not belong plugins  
 
-3. `.vimrc.funcs`
+3. `.vimrc.funcs`  
 define some  function by vim and it's plugins feature
 
-4. `.vimrc.keys`
+4. `.vimrc.keys`  
 all key maps , including apperance before vimrc*
 
 ## option
