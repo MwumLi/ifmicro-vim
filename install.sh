@@ -5,7 +5,7 @@ backup_configs=('.vimrc' '.vim' '.vimrc.plugin' '.vimrc.custom' '.vimrc.funcs' '
 # all new configuration
 vimrcs=("vimrc" "vimrc.plugins" "vimrc.custom" "vimrc.funcs" "vimrc.keys")
 # vim user dirctory
-vim_dir=("bundle" "colors" "autoload" "doc" "ftplugin" "syntax" "plugin")
+vim_dir=("bundle" "colors" "autoload" "doc" "ftplugin" "syntax" "plugin" "vimrc_s")
 cur_position=`pwd`
 # the project path -- must be absolute path
 # if the install.sh isn't project, you must specify a ifmicro_vim path
@@ -80,11 +80,35 @@ function backup() {
 # backup
 function config() {
  
-   # build links
+    msg "start to create vim resource directories"
+    length=${#vim_dir[*]}
+    for (( i = 0; i < ${length}; i++ )); do
+        mkdir -vp "${root_dir}/.vim/${vim_dir[$i]}" 1>>log.txt 2>>log.txt
+        print_curtime >>log.txt
+        if [ "$?" = "0" ]; then 
+            success "${root_dir}/.vim/#{vim_dir[$i]} created successfully"
+        else 
+            error "${root_dir}/.vim/#{vim_dir[$i]} create failed"
+            error "exit and abort the installation"
+            exit 1
+        fi
+    done
+    success "create vim resource successfully"
+
+    msg "start to copy resource files"
+    cp -Ruv ${ifmicro_vim}/vimrc* ${root_dir}/.vim/vimrc/
+    if [ "$?"!= "0" ]; then 
+            error "copy failed"
+            error "exit and abort the installation"
+            exit 1
+    else 
+        success "copy resource file successfully"
+    fi 
+
     msg "start to build links"
     length=${#vimrcs[*]}
     for (( i = 0; i < ${length}; i++ )); do
-        ln -sfv "${ifmicro_vim}/${vimrcs[$i]}" "${root_dir}/.${vimrcs[$i]}" 1>>log.txt 2>>log.txt
+        ln -sfv "${root_dir}/.vim/vimrc_s/${vimrcs[$i]}" "${root_dir}/.${vimrcs[$i]}" 1>>log.txt 2>>log.txt
         print_curtime >>log.txt
 
         if [ "$?" != "0" ]; then 
@@ -95,14 +119,7 @@ function config() {
     done 
     success "build links successfully"
 
-    # create vim resource dirs
-    msg "start to create vim resource directories"
-    length=${#vim_dir[*]}
-    for (( i = 0; i < ${length}; i++ )); do
-        mkdir -vp "${root_dir}/.vim/${vim_dir[$i]}" 1>>log.txt 2>>log.txt
-        print_curtime >>log.txt
-    done
-    success "create vim resource successfully"
+
 
     # download Vundle for managing other vim plugins
     msg "satrt to download Vundle.vim"
