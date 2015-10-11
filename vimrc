@@ -3,6 +3,12 @@
     set nocompatible
     " 定义快捷键的前缀 <Leader>
     let mapleader=";"
+
+    " glocal option {
+        "  here write your glocal option from
+        "  https://github.com/MwumLi/ifmicro-vim#user-content-options
+    
+    " }
 " }
 
 " plugins {
