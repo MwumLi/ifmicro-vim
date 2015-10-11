@@ -96,7 +96,7 @@ function config() {
     success "create vim resource successfully"
 
     msg "start to copy resource files"
-    cp -Ruv ${ifmicro_vim}/vimrc* ${root_dir}/.vim/vimrc/
+    cp -Ruv ${ifmicro_vim}/vimrc* ${root_dir}/.vim/vimrc_s/
     if [ "$?"!= "0" ]; then 
             error "copy failed"
             error "exit and abort the installation"
