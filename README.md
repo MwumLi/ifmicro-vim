@@ -17,7 +17,11 @@ But you can try it, don't worry it will  make a bad influence for you.
 ## Quick install
 
     $ git clone -b master https://github.com/MwumLi/ifmicro-vim.git
-    $ cd ifmicro_code && bash ./install.sh
+    $ cd ifmicro_code && make install 
+
+update :  
+
+    $ make update
     
 ## Load order
 

@@ -60,7 +60,7 @@ function backup() {
 
         if [ -e "${per_config}" ] && [ ! -L "${per_config}" ]; then 
         #if [ -e "${per_config}" ]; then 
-            cp -Rv "${per_config}" "${root_dir}/vim.${today}/"  1>>log.txt 2>>log.txt
+            cp -Rfv "${per_config}" "${root_dir}/vim.${today}/"  1>>log.txt 2>>log.txt
              print_curtime >>log.txt
 
             if [ "$?" != "0" ]; then 
@@ -86,9 +86,9 @@ function config() {
         mkdir -vp "${root_dir}/.vim/${vim_dir[$i]}" 1>>log.txt 2>>log.txt
         print_curtime >>log.txt
         if [ "$?" = "0" ]; then 
-            success "${root_dir}/.vim/#{vim_dir[$i]} created successfully"
+            success "${root_dir}/.vim/${vim_dir[$i]} created successfully"
         else 
-            error "${root_dir}/.vim/#{vim_dir[$i]} create failed"
+            error "${root_dir}/.vim/${vim_dir[$i]} create failed"
             error "exit and abort the installation"
             exit 1
         fi
@@ -96,7 +96,7 @@ function config() {
     success "create vim resource successfully"
 
     msg "start to copy resource files" 
-    cp -Ruv ${ifmicro_vim}/vimrc* ${root_dir}/.vim/vimrc_s/ 1>>log.txt 2>>log.txt 
+    cp -Rfv ${ifmicro_vim}/vimrc* ${root_dir}/.vim/vimrc_s/ 1>>log.txt 2>>log.txt 
     print_curtime >>log.txt
     if [ "$?" != "0" ]; then 
             error "copy failed"
