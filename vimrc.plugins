@@ -366,7 +366,9 @@
 " fencview {
 "   " settings {
        " 开启自动编码检测
-        let g:fencview_autodetect=1
+        if exists('g:ifmicro_encode_detect_enable')
+           let g:fencview_autodetect=1
+        endif
     " }
     "
     " keys {

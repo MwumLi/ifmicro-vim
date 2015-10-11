@@ -36,14 +36,25 @@ define some  function by vim and it's plugins feature
 4. `.vimrc.keys`  
 all key maps , including apperance before vimrc*
 
-## option
+## Options
 
 1. `g:ifmicro_ycm_enable`  
 
-if you need YouCompleteMe to completion, you must be : `let g:ifmicro_ycm_enable=1`  
+if you need YouCompleteMe to completion, you must be :  
+
+        let g:ifmicro_ycm_enable=1
 
 
 2. `g:ifmicro_dark_color_tone_enable`  
 
-if you need dark color tone, you must be : `let g:ifmicro_dark_color_tone_enable=1`  
+if you need dark color tone, you must be :  
+
+        let g:ifmicro_dark_color_tone_enable=1
+
+3. `g:g:ifmicro_encode_detect_enable`  
+
+If you need to open the file with the correct coding, you must be :  
+
+        let g:ifmicro_encode_detect_enable=1
+
 
