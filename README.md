@@ -1,6 +1,6 @@
 # ifmicro_vim
 
-Updated in 2015-10-10 by MwumLi
+Updated in 2015-10-11 by MwumLi
 
 ---
 
@@ -38,23 +38,62 @@ all key maps , including apperance before vimrc*
 
 ## Options
 
-1. `g:ifmicro_ycm_enable`  
+**Note** : Please specify the following options before `.vimrc.plugins`  
 
-if you need YouCompleteMe to completion, you must be :  
+1. Completion -- `g:ifmicro_ycm_enable`  
+
+   The default is that the option doesn't be set, but the completion is `neocomplete`  
+
+   If you need `YouCompleteMe` to completion, you must be :  
 
         let g:ifmicro_ycm_enable=1
 
+   If you need `neocomplete` to completion, do nothing or set below :  
 
-2. `g:ifmicro_dark_color_tone_enable`  
+        let g:ifmicro_ycm_enable=0
 
-if you need dark color tone, you must be :  
+
+2. Vim basic color tone -- `g:ifmicro_dark_color_tone_enable`  
+
+   The default is that the option doesn't be set   
+
+   The color tone is decided by your theme  
+
+   If you need dark color tone, you must be :  
 
         let g:ifmicro_dark_color_tone_enable=1
 
-3. `g:g:ifmicro_encode_detect_enable`  
+   If you need dark color tone, you must be :  
 
-If you need to open the file with the correct coding, you must be :  
+        let g:ifmicro_dark_color_tone_enable=0
+
+3. File Encoding Auto Detect -- `g:ifmicro_encode_detect_enable`  
+
+   The default is `0`  
+
+   If you need to open the file with the correct coding, you must be :  
 
         let g:ifmicro_encode_detect_enable=1
+
+    If you would like to open file with vim encoding, you can :  
+
+        let g:ifmicro_encode_detect_enable=0
+
+4. Vim theme -- `g:ifmicro_theme`
+
+   the default is `molokai`  
+
+   other value :  
+
+        "Tomorrow-Night-Bright"  
+        "Tomorrow-Night"
+        "Tomorrow-Night-Blue"
+        "Tomorrow-Night-Eighties"
+        "Tomorrow"
+
+   If you would like "Tomorrow", you must be :  
+
+        let g:ifmicro_theme="Tomorrow"
+
 
 

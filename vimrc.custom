@@ -35,13 +35,31 @@ set nocompatible
 
 " theme {
     set t_Co=256    " required
-    
-    colorscheme molokai
+ 
+    if exists('g:ifmicro_theme') 
+        if ifmicro_theme ==? "Tomorrow-Night-Bright"
+            colorscheme Tomorrow-Night-Bright
+        elseif ifmicro_theme ==? "Tomorrow-Night"
+            colorscheme Tomorrow-Night
+        elseif ifmicro_theme ==? "Tomorrow-Night-Blue"
+            colorscheme Tomorrow-Night-Blue
+        elseif ifmicro_theme ==? "Tomorrow-Night-Eighties"
+            colorscheme Tomorrow-Night-Eighties
+        elseif ifmicro_theme ==? "Tomorrow"
+            colorscheme Tomorrow
+        else 
+            colorscheme molokai
+        endif  
+    else 
+        colorscheme molokai
+    endif 
 
-    if !exists('g:ifmicro_dark_color_tone_enable')
-        set background=light
-    else
-        set background=dark
+    if exists('g:ifmicro_dark_color_tone_enable')
+        if g:ifmicro_dark_color_tone_enable == 1
+            set background=dark
+        else
+            set background=light
+        endif
     endif
 " }
 

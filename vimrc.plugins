@@ -36,15 +36,15 @@
         Plugin 'DrawIt' "逗比模式
     " }
     " 补全 {
-        if !exists('g:ifmicro_ycm_enable')
+        if exists('g:ifmicro_ycm_enable') && g:ifmicro_ycm_enable == 1
+                Plugin 'Valloric/YouCompleteMe'
+                " python for ycm
+                Plugin 'davidhalter/jedi' 
+                Plugin 'SirVer/ultisnips'
+        else 
             Plugin 'Shougo/neocomplete.vim'
             Plugin 'Shougo/neosnippet'
             Plugin 'Shougo/neosnippet-snippets'
-        else
-            Plugin 'Valloric/YouCompleteMe'
-            " python for ycm
-            Plugin 'davidhalter/jedi' 
-            Plugin 'SirVer/ultisnips'
         endif
         Plugin 'honza/vim-snippets' " 一些代码片段库
         Plugin 'scrooloose/syntastic' " 语义分析
@@ -158,88 +158,8 @@
 " }
 
 " 补全 {
-    if !exists('g:ifmicro_ycm_enable')
-        " neocomplete.vim {
-            " setting {
-                " Enable AutocomplPop
-                let g:acp_enableAtStartup=1
-                " Use neocomplete
-                let g:neocomplete#enable_at_startup = 1
-                " Use smartcase
-                let g:neocomplete#enable_smart_case = 1
-                let g:neocomplete#enable_auto_delimiter = 1
-                let g:neocomplete#max_list = 15
-                let g:neocomplete#force_overwrite_completefunc = 1
-                " Set minimum syntax keyword length.
-                let g:neocomplete#sources#syntax#min_keyword_length = 3
-                let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-    
-    
-                " Define dictionary.
-                let g:neocomplete#sources#dictionary#dictionaries = {
-                    \ 'default' : '',
-                    \ 'vimshell' : $HOME.'/.vimshell_hist',
-                    \ 'scheme' : $HOME.'/.gosh_completions'
-                    \ }
-    
-                " Define keyword.
-                if !exists('g:neocomplete#keyword_patterns')
-                    let g:neocomplete#keyword_patterns = {}
-                endif
-                let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-                " AutoComplPop like behavior.
-                " 自动会选中第一个补全
-                let g:neocomplete#enable_auto_select = 1
-
-                " Enable heavy omni completion.
-                autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-                autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-                autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-                autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-                autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-                " Enable heavy omni completion.
-                if !exists('g:neocomplete#sources#omni#input_patterns')
-                  let g:neocomplete#sources#omni#input_patterns = {}
-                endif
-                let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-                let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-                let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-                " For perlomni.vim setting.
-                " https://github.com/c9s/perlomni.vim
-                let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'                
-            " }
-            " keys {
-                " hide popup menu when the popup emnu is visible
-                inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-                function! s:my_cr_function()
-                    return pumvisible() ? "\<C-y>" : "\<CR>"
-                endfunction
-                " 下面这句加入配置, 就会出现问题, 好奇怪
-                "inoremap <expr> <ESC> pumvisible() ? "\<C-y>\<Esc>" : "\<Esc>"
-
-                " Up/Down to choose in popup window
-                inoremap <expr> <Down>  pumvisible() ? "\<C-n>" : "\<Down>"
-                inoremap <expr> <Up>  pumvisible() ? "\<C-p>" : "\<Up>"
-            " }
-        " }
-        " neosnippet {
-            " settings {
-                " Tell Neosnippet about the other snippets
-                let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets/'
-                let g:go_snippet_engine = "neosnippet"
-            " }
-            " keys {
-                " 增强tab键用于插入代码片段
-                " 插入模式时扩展代码片段
-                imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-                 \ "\<Plug>(neosnippet_expand_or_jump)"
-                 \: pumvisible() ? "\<C-n>" : "\<TAB>"
-            " }
-        " }
-    else
-        " YouCompleteMe {
+    if exists('g:ifmicro_ycm_enable') && g:ifmicro_ycm_enable == 1 " {
+      " YouCompleteMe {
             " settings { 
                 " Enable AutocomplPop
                 " 默认选中第一个补全
@@ -325,7 +245,87 @@
             " 因为Python已经有pylint来检查, 而且syntastic检查Python会在保存时有很长时间的卡顿, 所以禁用它对Python文件的检查
             let g:syntastic_ignore_files=[".*\.py$"]
         " }
-    endif
+    else "} {
+        " neocomplete.vim {
+            " setting {
+                " Enable AutocomplPop
+                let g:acp_enableAtStartup=1
+                " Use neocomplete
+                let g:neocomplete#enable_at_startup = 1
+                " Use smartcase
+                let g:neocomplete#enable_smart_case = 1
+                let g:neocomplete#enable_auto_delimiter = 1
+                let g:neocomplete#max_list = 15
+                let g:neocomplete#force_overwrite_completefunc = 1
+                " Set minimum syntax keyword length.
+                let g:neocomplete#sources#syntax#min_keyword_length = 3
+                let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+    
+    
+                " Define dictionary.
+                let g:neocomplete#sources#dictionary#dictionaries = {
+                    \ 'default' : '',
+                    \ 'vimshell' : $HOME.'/.vimshell_hist',
+                    \ 'scheme' : $HOME.'/.gosh_completions'
+                    \ }
+    
+                " Define keyword.
+                if !exists('g:neocomplete#keyword_patterns')
+                    let g:neocomplete#keyword_patterns = {}
+                endif
+                let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+                " AutoComplPop like behavior.
+                " 自动会选中第一个补全
+                let g:neocomplete#enable_auto_select = 1
+
+                " Enable heavy omni completion.
+                autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+                autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+                autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+                autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+                autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+                " Enable heavy omni completion.
+                if !exists('g:neocomplete#sources#omni#input_patterns')
+                  let g:neocomplete#sources#omni#input_patterns = {}
+                endif
+                let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+                let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+                let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+                " For perlomni.vim setting.
+                " https://github.com/c9s/perlomni.vim
+                let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'                
+            " }
+            " keys {
+                " hide popup menu when the popup emnu is visible
+                inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+                function! s:my_cr_function()
+                    return pumvisible() ? "\<C-y>" : "\<CR>"
+                endfunction
+                " 下面这句加入配置, 就会出现问题, 好奇怪
+                "inoremap <expr> <ESC> pumvisible() ? "\<C-y>\<Esc>" : "\<Esc>"
+
+                " Up/Down to choose in popup window
+                inoremap <expr> <Down>  pumvisible() ? "\<C-n>" : "\<Down>"
+                inoremap <expr> <Up>  pumvisible() ? "\<C-p>" : "\<Up>"
+            " }
+        " }
+        " neosnippet {
+            " settings {
+                " Tell Neosnippet about the other snippets
+                let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets/'
+                let g:go_snippet_engine = "neosnippet"
+            " }
+            " keys {
+                " 增强tab键用于插入代码片段
+                " 插入模式时扩展代码片段
+                imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+                 \ "\<Plug>(neosnippet_expand_or_jump)"
+                 \: pumvisible() ? "\<C-n>" : "\<TAB>"
+            " }
+        " }
+    endif " }
     " syntastic {
         " settings {
             " 设置错误符号
@@ -366,8 +366,10 @@
 " fencview {
 "   " settings {
        " 开启自动编码检测
-        if exists('g:ifmicro_encode_detect_enable')
+        if exists('g:ifmicro_encode_detect_enable') && g:ifmicro_encode_detect_enable == 1
            let g:fencview_autodetect=1
+        else 
+           let g:fencview_autodetect=0
         endif
     " }
     "
