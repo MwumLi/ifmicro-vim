@@ -46,6 +46,8 @@
             Plugin 'Shougo/neosnippet'
             Plugin 'Shougo/neosnippet-snippets'
         endif
+
+        Plugin 'fatih/vim-go'
         Plugin 'honza/vim-snippets' " 一些代码片段库
         Plugin 'scrooloose/syntastic' " 语义分析
     " }
@@ -311,6 +313,18 @@
                 inoremap <expr> <Up>  pumvisible() ? "\<C-p>" : "\<Up>"
             " }
         " }
+        " vim-go {
+            " settings {
+                let g:go_highlight_functions = 1
+                let g:go_highlight_methods = 1
+                let g:go_highlight_structs = 1
+                let g:go_highlight_operators = 1
+                let g:go_highlight_build_constraints = 1
+                let g:go_fmt_command = "goimports"
+                let g:go_fmt_fail_silently = 1 " 
+                let g:go_fmt_autosave = 0 "Disable auto fmt on save
+            "}
+        "}
         " neosnippet {
             " settings {
                 " Tell Neosnippet about the other snippets
