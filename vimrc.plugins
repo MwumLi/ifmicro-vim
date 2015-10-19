@@ -163,9 +163,13 @@
     if exists('g:ifmicro_ycm_enable') && g:ifmicro_ycm_enable == 1 " {
       " YouCompleteMe {
             " settings { 
-                " Enable AutocomplPop
-                " 默认选中第一个补全
-                let g:acp_enableAtStartup=1
+                if exists('g:ifmicro_auto_compl_pop_enable') && g:ifmicro_ycm_enable == 1
+                    " Enable AutocomplPop
+                    let g:acp_enableAtStartup=1
+                else 
+                    " Disable AutoComplPop
+                    let g:acp_enableAtStartup=0
+                endif
                 " enable completion from tags
                 " 使用 ctags 生成的 tags 文件
                 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -250,8 +254,13 @@
     else "} {
         " neocomplete.vim {
             " setting {
-                " Enable AutocomplPop
-                let g:acp_enableAtStartup=1
+                if exists('g:ifmicro_auto_compl_pop_enable') && g:ifmicro_ycm_enable == 1
+                    " Enable AutoComplPop
+                    let g:acp_enableAtStartup=0
+                else 
+                    " Disable AutocomplPop
+                    let g:acp_enableAtStartup=0
+                endif
                 " Use neocomplete
                 let g:neocomplete#enable_at_startup = 1
                 " Use smartcase
