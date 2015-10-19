@@ -63,4 +63,9 @@ set nocompatible
     endif
 " }
 
-
+" colors {
+    " 菜单
+    highlight Pmenu  ctermfg=darkgray ctermbg=0
+    " 选中项
+    highlight PmenuSel ctermfg=yellow ctermbg=darkgray
+" }

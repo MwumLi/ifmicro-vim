@@ -163,13 +163,6 @@
     if exists('g:ifmicro_ycm_enable') && g:ifmicro_ycm_enable == 1 " {
       " YouCompleteMe {
             " settings { 
-                if exists('g:ifmicro_auto_compl_pop_enable') && g:ifmicro_ycm_enable == 1
-                    " Enable AutocomplPop
-                    let g:acp_enableAtStartup=1
-                else 
-                    " Disable AutoComplPop
-                    let g:acp_enableAtStartup=0
-                endif
                 " enable completion from tags
                 " 使用 ctags 生成的 tags 文件
                 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -222,13 +215,6 @@
 
                 " YCM提供的跳跃功能采用了vim的jumplist，往前跳和往后跳的快捷键为Ctrl+O以及Ctrl+I。
             " }
-            " colors {
-                 " 菜单
-                highlight Pmenu  ctermfg=darkgray ctermbg=0
-                " 选中项
-                highlight PmenuSel ctermfg=yellow ctermbg=darkgray 
-            " }
-
         " }
         "
         " ultisnips {
@@ -254,12 +240,15 @@
     else "} {
         " neocomplete.vim {
             " setting {
-                if exists('g:ifmicro_auto_compl_pop_enable') && g:ifmicro_ycm_enable == 1
+                if exists('g:ifmicro_auto_compl_pop_enable') && g:ifmicro_auto_compl_pop_enable == 1
                     " Enable AutoComplPop
-                    let g:acp_enableAtStartup=0
+                    let g:acp_enableAtStartup=1
+                    " AutoComplPop like behavior.
+                    let g:neocomplete#enable_auto_select = 1
                 else 
                     " Disable AutocomplPop
                     let g:acp_enableAtStartup=0
+                    let g:neocomplete#enable_auto_select = 0
                 endif
                 " Use neocomplete
                 let g:neocomplete#enable_at_startup = 1
@@ -286,9 +275,6 @@
                 endif
                 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-                " AutoComplPop like behavior.
-                " 自动会选中第一个补全
-                let g:neocomplete#enable_auto_select = 1
 
                 " Enable heavy omni completion.
                 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS

@@ -99,7 +99,7 @@ all key maps , including apperance before vimrc*
 
         let g:ifmicro_theme="Tomorrow"
 
-5. Auto Choose -- `g:ifmicro_auto_compl_pop_enable`  
+5. NeoComplete.vim-Auto Choose -- `g:ifmicro_auto_compl_pop_enable`  
 
    The default doesn't enable auto choose   
 
