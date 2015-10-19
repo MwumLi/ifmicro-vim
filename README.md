@@ -106,6 +106,8 @@ all key maps , including apperance before vimrc*
    If you need auto choose item when completion occured, you muse be :  
 
         let g:ifmicro_auto_compl_pop_enable=1
+
    else   
+
         let g:ifmicro_auto_compl_pop_enable=0
 
