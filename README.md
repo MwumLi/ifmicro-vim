@@ -94,6 +94,7 @@ all key maps , including apperance before vimrc*
         "Tomorrow-Night-Blue"
         "Tomorrow-Night-Eighties"
         "Tomorrow"
+        "yowish"
 
    If you would like "Tomorrow", you must be :  
 
