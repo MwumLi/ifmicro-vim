@@ -163,7 +163,7 @@ function config() {
         error "ColorScheme" "Try to search"
     fi
     
-    vim +PluginInstall +qall
+    vim +PluginInstall  +GoInstallBinaries +qall
 }
 cd ${ifmicro_vim}
 msg "ifmicro_vim will be installed below  ${root_dir}"
