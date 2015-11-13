@@ -66,6 +66,9 @@
     " 格式化(Visual 模式, 选中区域, Tab /=, 基于 = 两边对齐)
     Plugin 'godlygeek/tabular'
 
+    "主题
+    Plugin 'KabbAmine/yowish.vim'
+
     " All of your Plugins must be added before the following line
     call vundle#end() " required
 

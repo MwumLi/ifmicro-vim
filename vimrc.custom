@@ -47,6 +47,8 @@ set nocompatible
             colorscheme Tomorrow-Night-Eighties
         elseif ifmicro_theme ==? "Tomorrow"
             colorscheme Tomorrow
+        elseif ifmicro_theme ==? 'yowish'
+            colorscheme yowish
         else 
             colorscheme molokai
         endif  
