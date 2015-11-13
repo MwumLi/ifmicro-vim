@@ -47,7 +47,7 @@
             Plugin 'Shougo/neosnippet-snippets'
         endif
 
-        Plugin 'fatih/vim-go'
+        Plugin 'fatih//im-go'
         Plugin 'honza/vim-snippets' " 一些代码片段库
         Plugin 'scrooloose/syntastic' " 语义分析
     " }
@@ -313,15 +313,41 @@
         " }
         " vim-go {
             " settings {
+                " https://github.com/fatih/vim-go#settings
                 let g:go_highlight_functions = 1
                 let g:go_highlight_methods = 1
                 let g:go_highlight_structs = 1
                 let g:go_highlight_operators = 1
                 let g:go_highlight_build_constraints = 1
+                "Enable goimports to automatically insert import paths instead of gofmt
                 let g:go_fmt_command = "goimports"
-                let g:go_fmt_fail_silently = 1 " 
-                let g:go_fmt_autosave = 0 "Disable auto fmt on save
+                let g:go_fmt_fail_silently = 1 "
+                "Disable auto fmt on save
+                let g:go_fmt_autosave = 0
+                let g:go_auto_type_info = 0
+                " Disable opening browser after posting your snippet to play.golang.org
+                " :GoPlay
+                "let g:go_play_open_browser = 0
+                " set biniary position for ':GoInstallBinaries'
+                " default is GOBIN or GOOATH/bin
+                let g:go_bin_path = expand("~/.go/bin")
+             "}
+            "keys {
+                " https://github.com/fatih/vim-go#mappings
+                " open defination -- GoDef
+                au FileType go nmap <Leader>ds <Plug>(go-def-split)
+                au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+                au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+
+                " open doc - GoDoc
+                au FileType go nmap <Leader>gd <Plug>(go-doc)
+                au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+                "  open the Godoc in browser
+                au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+
+                au FileType go nmap <Leader>i <Plug>(go-info)
             "}
+
         "}
         " neosnippet {
             " settings {
