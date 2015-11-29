@@ -1,179 +1,67 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html>
+
   <head>
-    <meta charset="UTF-8">
-    <title>Ifmicro-vim by MwumLi</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Ifmicro-vim by MwumLi</title>
+  <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/stylesheet.css">
+  <link rel="stylesheet" href="/css/github-light.css">
+  <link rel="stylesheet" href="/css/syntax-highlighting.css">
+  <link rel="canonical" href="http://mwumli.github.com/ifmicro-com/">
+  <link rel="alternate" type="application/rss+xml" title="Ifmicro-vim by MwumLi" href="http://mwumli.github.com/ifmicro-com/feed.xml" />
+</head>
+
+
   <body>
-    <section class="page-header">
-      <h1 class="project-name">Ifmicro-vim</h1>
-      <h2 class="project-tagline">My vim configuration and plugin managing</h2>
+
+    <header class="site-header">
+    <section class="page-header"
+        <h1 class="project-name">ifmicro-vim</h1>
+        <h2 class="project-tagline">My vim configuration and plugin managing</h2>
       <a href="https://github.com/MwumLi/ifmicro-vim" class="btn">View on GitHub</a>
       <a href="https://github.com/MwumLi/ifmicro-vim/zipball/master" class="btn">Download .zip</a>
       <a href="https://github.com/MwumLi/ifmicro-vim/tarball/master" class="btn">Download .tar.gz</a>
     </section>
+</header>
+
 
     <section class="main-content">
-      <h1>
-<a id="ifmicro_vim" class="anchor" href="#ifmicro_vim" aria-hidden="true"><span class="octicon octicon-link"></span></a>ifmicro_vim</h1>
-
-<p>Updated in 2015-11-13 by MwumLi</p>
-
-<hr>
-
-<h2>
-<a id="intrdocuce" class="anchor" href="#intrdocuce" aria-hidden="true"><span class="octicon octicon-link"></span></a>Intrdocuce</h2>
-
-<p><code>ifmicro_vim</code> is a distribution of vim plugins and resources for Vim, mostly ubuntu</p>
-
-<p>At present, I only write it for visiting ubuntu 14.04 by xshell, not test the effects for other platform  </p>
-
-<p>So I can't sure that whether it take effects for you in working platform.</p>
-
-<p>But you can try it, don't worry it will  make a bad influence for you.</p>
-
-<h2>
-<a id="quick-install" class="anchor" href="#quick-install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick install</h2>
-
-<pre><code>$ git clone -b master https://github.com/MwumLi/ifmicro-vim.git
-$ cd ifmicro_code &amp;&amp; make install 
-</code></pre>
-
-<p>update :  </p>
-
-<pre><code>$ make update
-</code></pre>
-
-<h2>
-<a id="load-order" class="anchor" href="#load-order" aria-hidden="true"><span class="octicon octicon-link"></span></a>Load order</h2>
-
-<p><code>.vimrc</code> is a controller, which control load order<br>
-It load <code>.vimrc-plugins -&gt; .vimrc-custom -&gt; .vimrc-funcs -&gt; .vimrc-keys</code> in order</p>
-
-<ol>
-<li><p><code>.vimrc.plugins</code><br>
-vim plugins and them configuration, key maps  </p></li>
-<li><p><code>.vimrc.custom</code><br>
-vim's configuration , not belong plugins  </p></li>
-<li><p><code>.vimrc.funcs</code><br>
-define some  function by vim and it's plugins feature</p></li>
-<li><p><code>.vimrc.keys</code><br>
-all key maps , including apperance before vimrc*</p></li>
-</ol>
-
-<h2>
-<a id="options" class="anchor" href="#options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Options</h2>
-
-<p><strong>Note</strong> : Please specify the following options before <code>.vimrc.plugins</code>  </p>
-
-<ol>
-<li>
-<p>Completion -- <code>g:ifmicro_ycm_enable</code>  </p>
-
-<p>The default is that the option doesn't be set, but the completion is <code>neocomplete</code>  </p>
-
-<p>If you need <code>YouCompleteMe</code> to completion, you must be :  </p>
-
-<pre><code>let g:ifmicro_ycm_enable=1
-</code></pre>
-
-<p>If you need <code>neocomplete</code> to completion, do nothing or set below :  </p>
-
-<pre><code>let g:ifmicro_ycm_enable=0
-</code></pre>
-</li>
-<li>
-<p>Vim basic color tone -- <code>g:ifmicro_dark_color_tone_enable</code>  </p>
-
-<p>The default is that the option doesn't be set   </p>
-
-<p>The color tone is decided by your theme  </p>
-
-<p>If you need dark color tone, you must be :  </p>
-
-<pre><code>let g:ifmicro_dark_color_tone_enable=1
-</code></pre>
-
-<p>If you need dark color tone, you must be :  </p>
-
-<pre><code>let g:ifmicro_dark_color_tone_enable=0
-</code></pre>
-</li>
-<li>
-<p>File Encoding Auto Detect -- <code>g:ifmicro_encode_detect_enable</code>  </p>
-
-<p>The default is <code>0</code>  </p>
-
-<p>If you need to open the file with the correct coding, you must be :  </p>
-
-<pre><code>let g:ifmicro_encode_detect_enable=1
-</code></pre>
-
-<p>If you would like to open file with vim encoding, you can :  </p>
-
-<pre><code>let g:ifmicro_encode_detect_enable=0
-</code></pre>
-</li>
-<li>
-<p>Vim theme -- <code>g:ifmicro_theme</code></p>
-
-<p>the default is <code>molokai</code>  </p>
-
-<p>other value :  </p>
-
-<pre><code>"Tomorrow-Night-Bright"  
-"Tomorrow-Night"
-"Tomorrow-Night-Blue"
-"Tomorrow-Night-Eighties"
-"Tomorrow"
-"yowish"
-</code></pre>
-
-<p>If you would like "Tomorrow", you must be :  </p>
-
-<pre><code>let g:ifmicro_theme="Tomorrow"
-</code></pre>
-</li>
-<li>
-<p>NeoComplete.vim-Auto Choose -- <code>g:ifmicro_auto_compl_pop_enable</code>  </p>
-
-<p>The default doesn't enable auto choose   </p>
-
-<p>If you need auto choose item when completion occured, you muse be :  </p>
-
-<pre><code>let g:ifmicro_auto_compl_pop_enable=1
-</code></pre>
-
-<p>else   </p>
-
-<pre><code>let g:ifmicro_auto_compl_pop_enable=0
-</code></pre>
-</li>
-</ol>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/MwumLi/ifmicro-vim">Ifmicro-vim</a> is maintained by <a href="https://github.com/MwumLi">MwumLi</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
+        
 
     </section>
 
-            <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-50450008-2");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
+
+    <section  class="main-content">
+    <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/MwumLi/ifmicro-vim">Ifmicro-vim</a> is maintained by <a href="https://github.com/MwumLi">MwumLi</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+    </footer>
+</section>
+
+
+<script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+  var trackid = 'UA-50450008-2';
+  try {
+      var pageTracker = _gat._getTracker(trackid);
+  pageTracker._trackPageview();
+  } catch(err) {}
+</script>
+
+
 
   </body>
+
 </html>
