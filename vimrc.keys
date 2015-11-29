@@ -6,6 +6,8 @@
     nmap qw :q<CR>
     " close all windows
     nmap qa :qa<CR>
+    " save and exit
+    nmap wq :wq<CR>
     " save changes in current window
     nmap <Leader>sw :w!<CR>  
     " save  changes in all windows
@@ -68,8 +70,13 @@
 
 " }
 
-" vim-indent-guides {
+" indent {
     " <Leader>ig -- toggle indent visual
+    " In Visual status, choose multiple lines, press < or > to unindent or indent
+    " >+> -- indent current line
+    " <+< -- unindent current line
+    " :<<< -- 把当前行向左移动 3 个缩进位
+    " :n1,n2> -- 把 n1 到 n2 行向右移动 1 个缩进位
 " }
 
 " vim-signature {
