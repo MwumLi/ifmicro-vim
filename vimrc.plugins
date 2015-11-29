@@ -14,6 +14,8 @@
     " 窗口 {
         " 管理其他窗口
         Plugin 'MwumLi/WinManager'  
+        " 文件树
+        Plugin 'scrooloose/nerdtree'
         " 展示当前文件定义的函数，变量等标签
         Plugin 'vim-scripts/taglist.vim'
         " 支持面向对象更佳
@@ -78,14 +80,65 @@
     " filetype plugin on
 " }
 
+" NERDTree {
+    let g:NERDTree_title="[NERDTree]"
+    function! NERDTree_Start()  
+        exec 'NERDTree'  
+    endfunction  
+          
+    function! NERDTree_IsValid()  
+        return 1  
+    endfunction     
+    nmap <Leader>nt :NERDTreeToggle<cr>
+
+    " 退出 Vim, 当文档窗口被关闭时候
+    function! Nerdtree_Exit_Only_Window(cmd)
+       exec a:cmd
+       if v:version < 700
+           if winbufnr(2) == -1
+               bdelete
+               quit
+           endif
+       else
+           if winbufnr(2) == -1
+                if tabpagenr("$") == 1
+                    " 仅当有一个 tab 存在时
+                    bdelete
+                    quit
+                    close
+                else
+                    " 当有多个 tab, 仅仅 close 当前 tab
+                    close
+                endif
+           endif
+       endif
+   endfunction
+" }
+
 " WinManager {
     " 设置要管理的插件
-    let g:winManagerWindowLayout='FileExplorer,TagList' 
+    let g:winManagerWindowLayout='NERDTree|TagList' 
     " 如果所有编辑文件都关闭了，退出vim
     let g:persistentBehaviour=0 
     let g:defaultExplorer=1
     let g:winManagerWidth=25
-    nmap wm :WMToggle<cr>
+    
+    function! SetupNerdtreeAndTagX()
+        let extensionMame = expand("%:e")
+        if extensionMame == "go"
+            exec 'NERDTreeToggle'
+            exec '2wincmd w'
+            exec 'TagbarToggle'
+        elseif extensionMame == "c" || extensionMame == "cpp"
+            exec "WMToggle"
+        else 
+            exec 'NERDTreeToggle'
+            exec '2wincmd w'
+        endif    
+   endfunction
+   
+   autocmd vimenter * call SetupNerdtreeAndTagX()   " 自启动
+   nmap <Leader>wm :call SetupNerdtreeAndTagX()<cr>         " 快捷启动
 " }
 "
 " taglist.vim { 
@@ -93,7 +146,7 @@
         " 设置ctags位置,taglist依赖于ctags.
         let Tlist_Ctags_Cmd='ctags'	 
         " 窗口显示位置:[0-->Left 1--Right]
-        let Tlist_Use_Right_Window=0	    
+        let Tlist_Use_Right_Window=1	    
         " 显示文件个数: [ 0-->more 1-->one ]
         let Tlist_Show_One_File=1	
         " 非当前文件，函数列表折叠隐藏  
@@ -108,7 +161,7 @@
     " }
     " keys {
         " 打开/关闭标签浏览器
-        nmap tl :Tlist<CR>		    
+        nmap <Leader>tl :Tlist<CR>		    
         " 按下<F5>生成tags,并且更新taglist
         map <F5> :!ctags -R --c++-kinds=+p --fields=+ialS --extra=+q .<CR><CR> :TlistUpdate<CR>
     " }
@@ -147,7 +200,7 @@
 
     " keys {
         " https://github.com/majutsushi/tagbar#quickstart
-        nmap <F8> :TagbarToggle<CR>
+        nmap <Leader>tt :TagbarToggle<CR>
     " }
 
 " }
@@ -414,8 +467,8 @@
             let g:syntastic_check_on_wq=1
         " }
         " keys {
-            noremap <F6> :Errors<CR>
-            noremap <F7> :lclose<CR>
+            noremap <Leader>er :Errors<CR>
+            noremap <Leader>lc :lclose<CR>
             nmap <Leader>sm :SyntasticToggleMode<CR>
         " }
     " } end syntastic config

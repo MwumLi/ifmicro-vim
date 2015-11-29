@@ -1,12 +1,15 @@
 " window-close {
+
     " discard the changes and close the current window
-    nmap qq :q!<CR>         
-    " 用户命令
-" :sp -- 上下分割窗口
-" :vsp -- 左右分割窗口" save changes and close the current window 
-    nmap wq :wq!<CR>    nmap sp :w!<CR>  "保存
+    nmap qq :q!<CR> 
+    " close the current window
+    nmap qw :q<CR>
+    " close all windows
+    nmap qa :qa<CR>
+    " save changes in current window
+    nmap <Leader>sw :w!<CR>  
     " save  changes in all windows
-    nmap wa :wa!<CR> "保存所有窗口
+    nmap <Leader>sa :wa!<CR> 
 " }
 
 " window-move {
@@ -21,13 +24,12 @@
 " }
 
 " window-split {
-    " 用户命令
-" :sp -- 上下分割窗口
-    
-" :vsp -- 左右分割窗口
+    " :sp 或 :new -- 上下分割窗口
+    " :vsp 或 :vnew -- 左右分割窗口
 " }
+
 " source-file {
-    " Make the configuration files take effect
+    " Make te vim configuration files take effect
     noremap <Leader>sv :source $HOME/.vimrc<CR>
 " }
 
@@ -54,15 +56,15 @@
 " }
 
 " 插入当前时间 {
-    "  nmap 'd "=strftime("%Y-%m-%d %H:%M:%S")<CR>p
+    nmap 'd "=strftime("%Y-%m-%d %H:%M:%S")<CR>p
     " enter "date" to get time or date by snips
 " }
 
 " clipborard {
-" copy selected area from vim to the system clipborard in Visual mode
-vnoremap <Leader>y "+y
-" paste content from the system clipborard to vim
-nmap <Leader>p "+p
+    " copy selected area from vim to the system clipborard in Visual mode
+    vnoremap <Leader>y "+y
+    " paste content from the system clipborard to vim
+    nmap <Leader>p "+p
 
 " }
 
@@ -115,7 +117,7 @@ nmap <Leader>p "+p
     " <F4>       -- open ycm diagnosis info
 " }
 
-" Ctrl { -- 文件查找
+" CtrlP { -- 文件查找
     " <F5> --  清除当前目录下的缓存，获取新的结构
     " <c-f>/<C-b> -- 切换查找模式(所有文件, 最近访问的文件, 当前缓冲区中的文件)
     " <c-d> -- 切换匹配文件名或者全路径
@@ -125,11 +127,13 @@ nmap <Leader>p "+p
     " <c-n>/<c-p> -- select the next/previous string in the prompt's history.
     " <c-y> -- 创造新文件(但貌似不起作用)
     " <c-z> -- mark/unmark multiple files and <c-o> to open them.
+"}
+
 
 " syntastic -- 语义检查 {
-    " <F6>          -- popup the  location-list and display the error messages
-    " <F7>          -- close location list window
-    " <Leader>sm    -- 激活/关闭语义检查
+    " <Leader>er          -- popup the  location-list and display the error messages
+    " <Leader>lc          -- close location list window
+    " <Leader>sm          -- 激活/关闭语义检查
 " }
 "
 "
