@@ -1,4 +1,4 @@
-# ifmicro_vim
+# ifmicro-vim
 
 
 项目介绍请移步 : <http://vim.ifmicro.com/>
