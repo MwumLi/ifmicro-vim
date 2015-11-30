@@ -227,5 +227,25 @@ layout: default
     <Leader>sm      : 启用/关闭语义检查
 "}
 
+" NerdTree,taglist,tagbar {
+    <Leader>wm      : 打开或关闭文件,标签管理窗口
+    <Leader>tl      : 打开或关闭 TagList
+    <Leader>tt      : 打开或关闭 TagBar
+    <Leader>nt      : 打开或关闭 NerdTree
+" }
+
+" 标签页 {
+    [b       : 下一个标签页
+    ]b       : 上一个标签页
+}
+
+" markdwon {
+    <Leader>m      : 打开 markdown 目录
+}
+
+" 编码 {
+    <Leader>u   : 当用正确的编码打开后，执行这个快捷键，转化编码为utf-8,并保存
+}
+
 {% endhighlight %}
 
