@@ -34,7 +34,244 @@
 
 
     <section class="main-content">
-        
+        <h2 id="section">最近一次更新</h2>
+
+<p>2015-11-29 23:53:08</p>
+
+<h2 id="section-1">简介</h2>
+
+<p><code>ifmicro-vim</code> 是一套可以快速部署并投入实用的 vim 配置, 包括了 Vim 的插件管理以及 Vim 自身的一些特性</p>
+
+<p>目前, 我仅仅在 Ubuntu 下进行了完整的测试并取得不错效果</p>
+
+<p>如果您对此感兴趣, 请放心尝试<br />
+因为它会自动备份你原有配置</p>
+
+<h2 id="section-2">快速安装</h2>
+
+<pre><code>$ git clone -b master https://github.com/MwumLi/ifmicro-vim.git
+$ cd ifmicro_code &amp;&amp; make install 
+</code></pre>
+
+<h2 id="section-3">更新和安装</h2>
+
+<pre><code>$ cd ifmicro_code &amp;&amp; make update
+</code></pre>
+
+<p>你可以订阅本项目, 一般项目有所更新, 会发邮件给您<br />
+然后您可以使用上述命令进行更新安装</p>
+
+<h2 id="section-4">项目结构及加载顺序</h2>
+
+<p>(假如您需要做一些微调, 你可能需要关注这块)</p>
+
+<pre><code>.
+├── colors      :   收集的一些配色方案
+├── install.sh  :   安装脚本
+├── Makefile    :   使用 make 来简化一些命令
+├── README.md   
+├── vimcdoc-1.9.0.tar.gz
+├── vimrc           : 控制器, 控制其他配置文件的加载顺序
+├── vimrc.custom    : vim 自身特性配置
+├── vimrc.funcs     : 根据 vim 的自身和插件的特性自定义的函数
+├── vimrc.keys      : 所有快捷键
+└── vimrc.plugins   : 使用 bundle 进行插件管理
+</code></pre>
+
+<p><code>vimrc</code> 是控制器, 控制加载顺序<br />
+它按顺序加载 <code>vimrc.plugins -&gt; vimrc.custom -&gt; vimrc-funcs -&gt; vimrc-keys</code></p>
+
+<h2 id="section-5">选项</h2>
+
+<p>通过对选项的设置, 来控制这套配置的一些特性</p>
+
+<p>默认配置已经是一个不错的方案，如果你需要更好的控制, 那么你需要了解下面几个选项</p>
+
+<p><strong>建议</strong> : 以下选项在 <code>vimrc</code> 中的 <code>global option</code> 里进行配置</p>
+
+<ol>
+  <li>
+    <p><code>g:ifmicro_ycm_enable</code> – 启用 <a href="https://github.com/Valloric/YouCompleteMe">ycm</a> 补全<br />
+提供两种补全插件 : <code>neocomplete</code> 和 <code>YouCompleteMe</code><br />
+默认是没有启用此选项, 使用 <code>neocomplete</code> 进行补全  <br />
+假如你需要使用 <code>YouCompleteMe</code>, 你需要设置 :</p>
+
+    <pre><code> let g:ifmicro_ycm_enable=1
+</code></pre>
+
+    <p>同时按照<a href="https://github.com/Valloric/YouCompleteMe">官网</a>编译 <code>ycm_support_libs</code></p>
+  </li>
+  <li>
+    <p><code>g:ifmicro_dark_color_tone_enable</code> – 启用 Vim 的暗色调
+Vim 有两种色调 :　亮色调和暗色调　　
+默认没有设置此选项, 即没有设置基础色调<br />
+不同的主题在不同的色调下表现并不一致<br />
+假如你需要暗色调, 你需要设置 :</p>
+
+    <pre><code> let g:ifmicro_dark_color_tone_enable=1
+</code></pre>
+
+    <p>假如你需要亮色调, 你需要设置 :</p>
+
+    <pre><code> let g:ifmicro_dark_color_tone_enable=0
+</code></pre>
+  </li>
+  <li>
+    <p><code>g:ifmicro_encode_detect_enable</code> – 自动识别编码<br />
+默认并没有设置此选项,即默认采用 utf-8 打开<br />
+假如你希望以正确的编码打开文件, 你需要 :</p>
+
+    <pre><code> let g:ifmicro_encode_detect_enable=1
+</code></pre>
+  </li>
+  <li>
+    <p><code>g:ifmicro_theme</code> – Vim 主题<br />
+默认是 <code>molokai</code><br />
+其他值 :</p>
+
+    <pre><code> "Tomorrow-Night-Bright"  
+ "Tomorrow-Night"
+ "Tomorrow-Night-Blue"
+ "Tomorrow-Night-Eighties"
+ "Tomorrow"
+ "yowish"
+</code></pre>
+
+    <p>假如你喜欢 “Tomorrow”, 你需要 :</p>
+
+    <pre><code> let g:ifmicro_theme="Tomorrow"
+</code></pre>
+  </li>
+  <li>
+    <p><code>g:ifmicro_auto_compl_pop_enable</code> – 自动选中补全 item  <br />
+ 默认是禁用 auto choose<br />
+ 假如你希望启用自动选中补全 item, 你需要 :</p>
+
+    <pre><code> let g:ifmicro_auto_compl_pop_enable=1
+</code></pre>
+  </li>
+</ol>
+
+<h2 id="section-6">快捷键和命令</h2>
+
+<ol>
+  <li>使用 map 定义的快捷键, 可通过 <code>:map ;wm</code> 类似的命令来查看</li>
+  <li>快捷键前缀 : <code>&lt;Leader&gt;</code> 默认为 <code>;</code></li>
+</ol>
+
+<p>快捷键列表 :</p>
+
+<div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="c">&quot; 窗口关闭和保存 {</span>
+    qq          :   关闭当前窗口<span class="p">,</span> 放弃修改  
+    qw          :   关闭当前窗口<span class="p">,</span> 如有修改未曾保存<span class="p">,</span>底部会有提示阻止  
+    <span class="k">qa</span>          :   关闭所有窗口<span class="p">,</span> 如有修改尚未保存<span class="p">,</span>底部会有提示阻止  
+    <span class="k">wq</span>          :   保存内容并关闭当前窗口  
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">sw</span>  :   强行保存当前窗口内容
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">sa</span>  :   强行保存所有窗口内容
+<span class="c">&quot;}</span>
+
+<span class="c">&quot; 窗口移动 {</span>
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">lw</span> 或 <span class="p">&lt;</span>C<span class="p">-</span>W<span class="p">&gt;</span><span class="k">l</span>    :   跳转至右边的窗口
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span>hw 或 <span class="p">&lt;</span>C<span class="p">-</span>W<span class="p">&gt;</span><span class="k">h</span>    :   跳转至左边的窗口
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span>kw 或 <span class="p">&lt;</span>C<span class="p">-</span>W<span class="p">&gt;</span><span class="k">k</span>    :   跳转至上方的窗口
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span>jw 或 <span class="p">&lt;</span>C<span class="p">-</span>W<span class="p">&gt;</span><span class="k">j</span>    :   跳转至下方的窗口
+<span class="c">&quot;}</span>
+
+<span class="c">&quot; 窗口分割 {</span>
+    :<span class="k">sp</span> 或 :<span class="k">new</span>     : 上下分割窗口
+    :<span class="k">vsp</span> 或 :<span class="k">vnew</span>   : 左右分割窗口
+<span class="c">&quot;}</span>
+
+<span class="c">&quot; 配置文件生效 {</span>
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">sv</span> 
+<span class="c">&quot;} </span>
+
+<span class="c">&quot; 移动 {</span>
+    <span class="m">1</span>   :   跳到行首
+    <span class="m">0</span>   :   跳到行尾
+    <span class="m">5</span>   :   在匹配的括号间跳转
+<span class="c">&quot;}</span>
+
+<span class="c">&quot; 切换 {</span>
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">cr</span>      :   切换行光标线  
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">cl</span>      :   切换列光标线
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">n</span>       :   切换行号
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">h</span>       :   切换中英文帮助
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span>ig      :   切换缩进可视化
+}
+
+<span class="c">&quot; 插入当前时间 {</span>
+    &#39;<span class="k">d</span>  :   类似 <span class="m">2015-11-30</span> <span class="m">08</span>:<span class="m">10</span>:<span class="m">53</span>
+    输入 <span class="s2">&quot;date&quot;</span><span class="p">,</span> 使用代码片段  
+<span class="c">&quot;}</span>
+
+<span class="c">&quot; 映射系统剪贴板 {</span>
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">y</span>       :   可视化模式下<span class="p">,</span> 选中某块区域<span class="p">,</span> 按下此键<span class="p">,</span> copy 内容到系统剪贴板  
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">p</span>       :   粘贴系统剪贴板内容到当前缓冲区  
+<span class="c">&quot;}</span>
+
+<span class="c">&quot; 缩进 {</span>
+    <span class="p">&gt;</span>       :   Visual 模式下<span class="p">,</span> 选中行数<span class="p">,</span> 按下此键向右移动 <span class="m">1</span> 个缩进位  
+    <span class="p">&lt;</span>       :   Visual 模式下<span class="p">,</span> 选中行数<span class="p">,</span> 按下此键向左移动 <span class="m">1</span> 个缩进位
+    <span class="p">&gt;&gt;</span>      :   Normal 模式下<span class="p">,</span> 按下此键<span class="p">,</span> 向右移动 <span class="m">1</span> 个缩进位
+    <span class="p">&lt;&lt;</span>      :   Normal 模式下<span class="p">,</span> 按下此键<span class="p">,</span> 向左移动 <span class="m">1</span> 个缩进位
+    :<span class="p">&lt;&lt;&lt;</span>    :   把当前行向左移动 <span class="m">3</span> 个缩进位  
+    :n1<span class="p">,</span>n2<span class="p">&gt;</span> :   把 n1 到 n2 行向右移动 <span class="m">1</span> 个缩进位
+}
+
+<span class="c">&quot; 独立书签 {</span>
+    mx          :   添加和移动书签 <span class="s1">&#39;x&#39;</span> 在行号左边<span class="p">,</span> <span class="s1">&#39;x&#39;</span> <span class="k">is</span> <span class="k">a</span><span class="p">-</span>zA<span class="p">-</span>Z
+    <span class="k">m</span><span class="p">,</span>          :   添加下一个可获得的书签  
+    <span class="k">m</span>.          :   假如当前没有书签<span class="p">,</span> 添加下一个可获得书签
+                    否则<span class="p">,</span> 移除首个存在的标签  
+    <span class="k">m</span><span class="p">-</span>          :   删除当前行的所有书签
+    <span class="k">m</span><span class="p">&lt;</span>Space<span class="p">&gt;</span>    :   删除当前缓冲区的所有书签
+    <span class="k">m</span>/          :   列出当前缓冲区的所有书签供你选择跳转
+<span class="c">&quot; }</span>
+
+<span class="c">&quot; 注释 {</span>
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">cc</span>      :   注释当前行
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span>cm      :   只用一组符号来注释
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span>cy      :   注释并复制
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">cs</span>      :   优美的注释
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span>cu      :   取消注释
+<span class="c">&quot; }</span>
+
+<span class="c">&quot; 逗比模式 {</span>
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">di</span>  : 开启逗比模式
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">ds</span>  : 关闭逗比模式  
+<span class="c">&quot; }</span>
+
+<span class="c">&quot; 补全 {</span>
+    <span class="p">&lt;</span>CR<span class="p">&gt;</span>            :   隐藏 <span class="k">popup</span> 窗口<span class="p">,</span> Insert 模式
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span>;       :   ycm 使用 OmiCppComplete engine
+    ArrowUp/<span class="p">&lt;</span>C<span class="p">-</span><span class="k">p</span><span class="p">&gt;</span>   :   向上选中 item
+    ArrowDown       :   向下选中 item
+}
+
+<span class="c">&quot; 扩展代码片段 {</span>
+    <span class="p">&lt;</span>TAB<span class="p">&gt;</span>           :  Insert 模式下<span class="p">,</span> 补全 item 含有 `<span class="p">&lt;</span>snip<span class="p">&gt;</span>` 的片段<span class="p">,</span> 可用此键进行扩展并跳到下一个占位符   
+<span class="c">&quot; }</span>
+
+<span class="c">&quot; CtrlP -- 类 sublime 的 ctrlp 功能 {</span>
+    <span class="p">&lt;</span>C<span class="p">-</span><span class="k">p</span><span class="p">&gt;</span>           :   打开 CtrlP 面板    
+    <span class="p">&lt;</span>F5<span class="p">&gt;</span>            :   清除当前目录下的缓存<span class="p">,</span> 获取新的结构
+    <span class="p">&lt;</span>C<span class="p">-</span><span class="k">f</span><span class="p">&gt;</span>/<span class="p">&lt;</span>C<span class="p">-</span><span class="k">b</span><span class="p">&gt;</span>     :   切换查找模式<span class="p">(</span>所有文件<span class="p">-&gt;</span>当前缓冲区文件<span class="p">-&gt;</span>最近访问的文件<span class="p">)</span>
+    <span class="p">&lt;</span>C<span class="p">-</span><span class="k">d</span><span class="p">&gt;</span>           :   切换匹配模式<span class="p">(</span>路径<span class="p">-&gt;</span>文件名<span class="p">)</span>
+    <span class="p">&lt;</span>C<span class="p">-</span><span class="k">r</span><span class="p">&gt;</span>           :   切换正则匹配模式
+    <span class="p">&lt;</span>C<span class="p">-</span><span class="k">k</span><span class="p">&gt;</span><span class="sr">/&lt;C-j&gt;     :   结果列表中向上/</span>向下移动
+    <span class="p">&lt;</span>C<span class="p">-</span><span class="k">p</span><span class="p">&gt;</span><span class="sr">/&lt;C-n&gt;     :   查找历史的上一项/</span>下一项
+    <span class="p">&lt;</span>C<span class="p">-</span><span class="k">y</span><span class="p">&gt;</span>           :   创造新文件
+    <span class="p">&lt;</span>C<span class="p">-</span>z<span class="p">&gt;</span>           :   mark/unmark multiple <span class="k">files</span> and <span class="p">&lt;</span>C<span class="p">-</span><span class="k">o</span><span class="p">&gt;</span> <span class="k">to</span> open them
+    <span class="p">&lt;</span>C<span class="p">-</span><span class="k">o</span><span class="p">&gt;</span>           :   打开文件<span class="p">,</span> 提示你选择何种展示方式  
+<span class="c">&quot;}</span>
+
+<span class="c">&quot; syntastic -- 语义检查 {</span>
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span>er      : <span class="k">popup</span> the  location<span class="p">-</span><span class="nb">list</span> and <span class="nb">display</span> the error <span class="k">messages</span>
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">lc</span>      : <span class="k">close</span> location <span class="nb">list</span> <span class="nb">window</span>
+    <span class="p">&lt;</span>Leader<span class="p">&gt;</span><span class="k">sm</span>      : 启用/关闭语义检查
+<span class="c">&quot;}</span></code></pre></div>
+
 
     </section>
 
@@ -43,7 +280,7 @@
     <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/MwumLi/ifmicro-vim">Ifmicro-vim</a> is maintained by <a href="https://github.com/MwumLi">MwumLi</a>.</span>
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />本<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" rel="dct:type">作品</span>由<a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/MwumLi/ifmicro-vim" property="cc:attributionName" rel="cc:attributionURL">MwumLi</a>创作，采用<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>进行许可。
     </footer>
 </section>
 
