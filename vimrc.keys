@@ -129,10 +129,10 @@
     " <c-f>/<C-b> -- 切换查找模式(所有文件, 最近访问的文件, 当前缓冲区中的文件)
     " <c-d> -- 切换匹配文件名或者全路径
     " <c-r> -- switch to regexp mode
-    " <c-j> -- 结果列表中向上移动
-    " <c-k> -- 结果列表中向下移动
+    " <c-k> -- 结果列表中向上移动
+    " <c-j> -- 结果列表中向下移动
     " <c-n>/<c-p> -- select the next/previous string in the prompt's history.
-    " <c-y> -- 创造新文件(但貌似不起作用)
+    " <c-y> -- 创造新文件
     " <c-z> -- mark/unmark multiple files and <c-o> to open them.
 "}
 

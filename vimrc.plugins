@@ -253,6 +253,15 @@
 " }
 
 " 补全 {
+
+    " keys {
+        " hide popup menu when the popup emnu is visible
+        inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+        function! s:my_cr_function()
+            return pumvisible() ? "\<C-y>" : "\<CR>"
+        endfunction
+    " }
+    
     if exists('g:ifmicro_ycm_enable') && g:ifmicro_ycm_enable == 1 " {
       " YouCompleteMe {
             " settings { 
@@ -388,11 +397,6 @@
                 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'                
             " }
             " keys {
-                " hide popup menu when the popup emnu is visible
-                inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-                function! s:my_cr_function()
-                    return pumvisible() ? "\<C-y>" : "\<CR>"
-                endfunction
                 " 下面这句加入配置, 就会出现问题, 好奇怪
                 "inoremap <expr> <ESC> pumvisible() ? "\<C-y>\<Esc>" : "\<Esc>"
 
