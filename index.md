@@ -113,7 +113,7 @@ layout: default
 1. 使用 map 定义的快捷键, 可通过 `:map ;wm` 类似的命令来查看  
 2. 快捷键前缀 : `<Leader>` 默认为 `;`  
 
-### 自定义  
+快捷键列表 :  
 
 {% highlight vim %}
 " 窗口关闭和保存 {
