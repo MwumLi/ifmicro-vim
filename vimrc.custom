@@ -9,7 +9,7 @@ set nocompatible
     set cursorline      " 行光表现
     set cursorcolumn    " 列光标线
     set laststatus=2    " 总是显示状态栏
-
+    syntax on           " 语法高亮
 " }
 
 
