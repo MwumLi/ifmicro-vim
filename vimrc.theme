@@ -1,0 +1,54 @@
+" altercation/vim.colors-solarized {
+" To achieve the besr visual effects :
+" 1. teriminal use solarized color
+" 2. teriminal needs support 256color : 
+"       echo "export TERM=xterm-256color" >> ~/.bashrc
+"
+" 3. tmux needs support 256color : 
+"
+"       echo "alias tmux='tmux -2'" >> ~/.bashrc
+"
+
+    " tmux adjust
+    if exists('$TMUX')
+      set term=screen-256color
+    endif
+
+    " xterm or xterm-256color or xterm-color
+    " help cterm-color  -- view color map in vim
+    set t_Co=256    " vim 开启 256 色支持, required
+    syntax enable   " 语法高亮增强, required
+
+    if exists("g:ifmicro_theme")
+
+        if g:ifmicro_theme == "solarized"
+         
+            " color tune
+            if exists("g:ifmicro_solarized_color_tune") && g:ifmicro_solarized_color_tune == "light"
+
+                set background=light
+                colorscheme solarized   " user theme solarized
+                if exists("g:ifmicro_connect_term_way") && ifmicro_connect_term_way == "xshell" 
+
+                    " bottom status line
+                    highlight StatusLine ctermfg=cyan ctermbg=lightgray
+                    highlight StatusLineNC ctermfg=cyan ctermbg=lightgray
+                endif
+            else
+
+                set background=dark
+                colorscheme solarized   " user theme solarized 
+
+                if exists("g:ifmicro_connect_term_way") && ifmicro_connect_term_way == "xshell" 
+                    " bottom status line
+                    highlight StatusLine ctermfg=darkgreen ctermbg=black  
+                    highlight StatusLineNC ctermfg=darkgreen ctermbg=black
+                endif
+            endif
+        elseif g:ifmicro_theme == "molokai"
+            
+            colorscheme molokai
+        endif
+    endif
+
+" }

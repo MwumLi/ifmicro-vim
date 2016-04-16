@@ -1,0 +1,151 @@
+" window-close {
+
+    " discard the changes and close the current window
+    nmap qq :q!<CR> 
+    " close the current window
+    nmap qw :q<CR>
+    " close all windows
+    nmap qa :qa<CR>
+    " save and exit
+    nmap wq :wq<CR>
+    " save changes in current window
+    nmap <Leader>sw :w!<CR>  
+    " save  changes in all windows
+    nmap <Leader>sa :wa!<CR> 
+" }
+
+" window-move {
+    " jump to right window
+    nnoremap <Leader>lw <C-W>l	" 跳转至右方的窗口
+    " jump to left window
+    nnoremap <Leader>hw <C-W>h	" 跳转至左方的窗口
+    " jump to top window
+    nnoremap <Leader>kw <C-W>k	" 跳转至上方的窗口
+    " jump to bottom window
+    nnoremap <Leader>jw <C-W>j	" 跳转至下方的窗口
+" }
+
+" window-split {
+    " :sp 或 :new -- 上下分割窗口
+    " :vsp 或 :vnew -- 左右分割窗口
+" }
+
+" paster or nopaste {
+
+    set pastetoggle=<F2>    " 切换粘贴模式, 非粘贴模式下粘贴会进行自动缩进
+" }
+" source-file {
+    " Make te vim configuration files take effect
+    noremap <Leader>sv :source $HOME/.vimrc<CR>
+" }
+
+" move {
+    " jump to the start of line
+    noremap 1 0	
+    " jump to the end of line
+    noremap 0 $	
+    " jump loop in Pairing characters , such '( ... )', '{  }'
+    nmap 5 %
+
+" }
+
+" toggle {
+
+    nmap <Leader>ch :call ToggleCursorLine()<CR>    " 切换行光标线
+    nmap <Leader>cl :call ToggleCursorColumn()<CR>  " 切换列光标线
+    nmap <Leader>n  :call ToggleLineNr()<CR>        " 切换行号
+    " toggleing chinese/english help for vim 
+    " try to ':help vim' after press '<Leader>h' in normal mode
+    nmap <Leader>h  :call ToggleHelp()<CR>         " 切换中英文帮助
+" }
+
+" show syntax hightlighting groups for word under cursor {
+    
+    nmap <C-S-P>    :call SynStack()<CR>            " 显示语法组
+" }
+" 插入当前时间 {
+    nmap <Leader>d "=strftime("%Y-%m-%d %H:%M:%S")<CR>p
+    " enter "date" to get time or date by snips
+" }
+
+" clipborard {
+    " copy selected area from vim to the system clipborard in Visual mode
+    vnoremap <Leader>y "+y
+    " paste content from the system clipborard to vim
+    nmap <Leader>p "+p
+
+" }
+
+" indent {
+    " <Leader>ig -- toggle indent visual
+    " In Visual status, choose multiple lines, press < or > to unindent or indent
+    " >+> -- indent current line
+    " <+< -- unindent current line
+    " :<<< -- 把当前行向左移动 3 个缩进位
+    " :n1,n2> -- 把 n1 到 n2 行向右移动 1 个缩进位
+" }
+
+" vim-signature {
+    " mx        --  Toggle mark 'x' and display it in the leftmost colu
+    " dmx       --  Remove mark 'x' where x is a-zA-Z
+    " m,        --  Place the next available mark
+    " m.        --  If no mark on line, place the next available mark. Otherwise,
+    "               remove (first) existing mark.
+    " m-        --  Delete all marks from the current line
+    " m<Space>  --  Delete all marks from the current buffer
+    " m/        --  Open location list and display marks from current buffer
+"}
+
+" nerdcommenter {
+    " <Leader>cc -- 注释当前行
+    " <leader>cm -- 只用一组符号来注释
+    " <leader>cy -- 注释并复制
+    " <leader>cs -- 优美的注释
+    " <leader>cu -- 取消注释
+" }
+
+" DrawIt -- 逗比模式 {
+    " <Leader>di -- to start DrawIt and
+    " <Leader>ds -- to stop  DrawIt.
+" }
+
+" neocomplete {
+    " <CR> --  hide popup menu
+    " <ESC> -- hide popup menu and enter to normal
+
+" }
+
+" YouCompleteMe {
+    " <Leader>; -- enable OmniCppComplete engine
+    " ArrowUp/<C-p> -- Up to choose in popup window
+    " ArrowDown/<C-n> -- Down to choose in popup window
+" }
+
+" <TAB> -- performs the snippet completion or jump to next placeholder
+
+" Ultisnips {
+    " <leader>gg -- go to definisiton or declaration
+    " <Leader>gl -- go to definisiton
+    " <Leader>gg -- go to declaration
+    " <F4>       -- open ycm diagnosis info
+" }
+
+" CtrlP { -- 文件查找
+    " <F5> --  清除当前目录下的缓存，获取新的结构
+    " <c-f>/<C-b> -- 切换查找模式(所有文件, 最近访问的文件, 当前缓冲区中的文件)
+    " <c-d> -- 切换匹配文件名或者全路径
+    " <c-r> -- switch to regexp mode
+    " <c-k> -- 结果列表中向上移动
+    " <c-j> -- 结果列表中向下移动
+    " <c-n>/<c-p> -- select the next/previous string in the prompt's history.
+    " <c-y> -- 创造新文件
+    " <c-z> -- mark/unmark multiple files and <c-o> to open them.
+"}
+
+
+" syntastic -- 语义检查 {
+    " <Leader>er          -- popup the  location-list and display the error messages
+    " <Leader>lc          -- close location list window
+    " <Leader>sm          -- 激活/关闭语义检查
+" }
+"

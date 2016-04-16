@@ -1,0 +1,55 @@
+"-------------用户自定义函数--------------
+
+" 显示/隐藏行号
+function! ToggleLineNr()
+    let number = &number
+    if number
+        set nonumber
+    else
+        set number
+    endif
+endfunction
+
+" 显示/隐藏行光标线
+function! ToggleCursorLine()
+    let cursorline = &cursorline
+    if cursorline
+        set nocursorline
+    else
+        set cursorline
+    endif
+endfunction
+
+" 显示/隐藏列光标线
+function! ToggleCursorColumn()
+    let cursorcolumn = &cursorcolumn
+    if cursorcolumn
+        set nocursorcolumn
+    else
+        set cursorcolumn
+    endif
+endfunction
+
+" 切换中英文帮助
+function! ToggleHelp()
+    let helplang = &helplang
+    if helplang == "en"
+        set helplang=cn
+    else
+        set helplang=en
+    endif
+endfunction
+
+" 显示当前所用语法
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+" :function 列出所有用户自定义函数及其参数
+" :function func-name 查看函数源码
+" http://vimcdoc.sourceforge.net/doc/usr_41.html
+" http://www.ibm.com/developerworks/cn/linux/l-vim-script-1/
+" `&option` 获取一个 `set` 选项的值

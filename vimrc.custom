@@ -1,0 +1,51 @@
+"  not compatible with vi
+set nocompatible 
+
+
+" appearance {
+    set t_Co=256        " 开启 256 色
+    set number          " 行号
+    set ruler           " 标尺
+    set cursorline      " 行光表现
+    set cursorcolumn    " 列光标线
+    set laststatus=2    " 总是显示状态栏
+" }
+
+
+" search {
+    set incsearch   " 开启实时搜索
+    set ignorecase  " 搜索时大小写不敏感
+    set hlsearch    " 高亮显示搜索结果
+    set wildmenu    " 开启 Vim 自身命令行模式智能补全
+" }
+
+
+" indent {
+    filetype indent on  " 自适应不同语言的智能缩进
+    set expandtab 	    " 将制表符扩展为空格
+    set tabstop=4 	    " 设置编辑制表符占用空格数
+    set shiftwidth=4    " 设置格式化时制表符占用空格数
+    set softtabstop=4   " 让 vim 把连续数量的空格视为一个制表符
+    set smarttab        " 按一下 Backspace 就删除 4 个空格
+" }
+
+
+" colors {
+    " 菜单
+    highlight Pmenu  ctermfg=darkgray ctermbg=0
+    " 选中项
+    highlight PmenuSel ctermfg=yellow ctermbg=darkgray
+" }
+"
+"
+" cursor {
+    if exists('$ITERM_PROFILE')
+      if exists('$TMUX') 
+        let t_SI = "<Esc>[3 q"
+        let t_EI = "<Esc>[0 q"
+      else
+        let t_SI = "<Esc>]50;CursorShape=1x7"
+        let t_EI = "<Esc>]50;CursorShape=0x7"
+      endif
+    end
+" }
