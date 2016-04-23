@@ -13,9 +13,41 @@
 
     Plugin 'altercation/vim-colors-solarized'
 
+    " 美化状态栏--可以配合多个插件一起使用
+    Plugin 'bling/vim-airline'
+ 
+
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
     filetype plugin indent on    " required
     " To ignore plugin indent changes, instead use:
     "filetype plugin on
 " }
+"
+
+
+" vim-airline {
+    " :help airline
+    " settings {
+        " 启用底部状态栏
+        set laststatus=2
+        " 启用一些扩展, 比如tab页, branch分支
+        let g:airline_extensions = ['tabline']
+        let g:airline#extensions#branch#enabled = 1
+        " 去除 trailing, 就是底部状态栏最后一部分内容
+        let g:airline_section_warning=''
+        " 使用 poweline 打过补丁的字,看起来会好看
+        let g:airline_powerline_fonts = 1
+        " 启用 airline 主题
+        " 默认是和 vim 主题名一致的主题
+        " 可在 ~/.vim/bundle/vim-airline/autoload/airline/themes/ 寻找
+        " 主题截图地址 https://github.com/bling/vim-airline/wiki/Screenshots
+        let g:airline_theme='dark'
+    " }
+    " keys {
+        " 映射切换buffer的键位
+        nnoremap [b :bp<CR>
+        nnoremap ]b :bn<CR>
+    " }
+" }
+
