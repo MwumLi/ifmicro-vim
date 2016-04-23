@@ -37,3 +37,20 @@
    设置 `g:ifmicro_encode_detect_enable` 为 1, 则开启自动编码探测
    `<Leader>u` : 转化编码为 utf-8, 并保存  
 
+3. ctrlp
+   类似 sublime 的 Ctrl-P 操作
+
+4. vim-signature
+   可视化书签  
+   m`x` -- 开关书签 x
+   `m-` -- 删除当前行所有书签  
+   `m<Space>` -- 删除当前缓冲区的所有书签  
+   `m/` -- 列出当前缓冲区的所有标签  
+
+5. nerdcommenter
+   注释  
+   `<Leader>cc` -- 注释当前行  
+   `<Leader>cy` -- 注释并复制  
+   `<Leader>cs` -- 优美的注释
+   `<Leader>cu` --  取消注释  
+

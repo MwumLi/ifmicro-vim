@@ -19,6 +19,17 @@
      " 转化编码的插件
     Plugin 'MwumLi/fencview'   
 
+
+    " 快速查找文件(当前目录及子目录, 最近访问文件, 当前缓冲区中的文件)
+    Plugin 'kien/ctrlp.vim'
+
+    " 可视化显示 marks
+    " toggle,display and navigate marks
+    " https://github.com/kshenoy/vim-signature
+    Plugin 'kshenoy/vim-signature'
+
+    Plugin 'scrooloose/nerdcommenter'
+
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
     filetype plugin indent on    " required
@@ -69,3 +80,15 @@
         nmap <Leader>u :set fenc=utf-8<CR>:w<CR>
     " }
 " }
+
+
+" ctrlp.vim {
+    " 文件查找
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+    let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+      \ 'file': '\v\.(exe|so|dll|jpg|png|jpeg)$',
+      \ }
+    "let g:ctrlp_match_window = 'top,order:btt,min:1,max:10,results:20'
+" }
+
