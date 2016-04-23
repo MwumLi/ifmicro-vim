@@ -1,3 +1,16 @@
+
+" set encoding {
+    
+    " vim 缓冲区的编码  vim 7.4.62 不会自动设置和系统 locale 相同
+    set encoding=utf-8
+    " vim 输出到终端的编码
+    set termencoding=utf-8
+    " vim 写入文件时采用的编码类型, 如果与 encoding 不一致, 则自动转化为
+    " fileencoding 的编码
+    " set fileencoding=utf-8  
+    set fileencodings=utf-8,utf-16,gb18030,cp936,euc-tw,cp932,latin1
+" }
+
 " Vundle start {
     set nocompatible              " be iMproved, required
     filetype off                  " required
@@ -14,7 +27,9 @@
     Plugin 'altercation/vim-colors-solarized'
 
     " 美化状态栏--可以配合多个插件一起使用
-    Plugin 'bling/vim-airline'
+    " Plugin 'bling/vim-airline'
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
  
      " 转化编码的插件
     Plugin 'MwumLi/fencview'   

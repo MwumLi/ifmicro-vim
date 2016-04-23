@@ -16,6 +16,14 @@
 
 1. 一个配色看起来不错, 用起来顺手的编辑器  
 
+
+## 编码
+
+`encoding`, `termencoding`, `fileencoding`, `fileencodings`  
+
+<http://www.cnblogs.com/mangu-uu/articles/2475070.html>  
+<http://blog.csdn.net/dadoneo/article/details/6003361>  
+
 ## Todo
 
 ### v1.0
