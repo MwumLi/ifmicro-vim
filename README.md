@@ -42,10 +42,12 @@
 
 4. vim-signature
    可视化书签  
-   m`x` -- 开关书签 x
+   `mx` -- 开关书签 x
    `m-` -- 删除当前行所有书签  
    `m<Space>` -- 删除当前缓冲区的所有书签  
    `m/` -- 列出当前缓冲区的所有标签  
+   `'x` -- 跳转到 x 位置 
+   `:help mark@cn` 查看书签帮助
 
 5. nerdcommenter
    注释  
