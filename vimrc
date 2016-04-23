@@ -26,7 +26,7 @@
                 \ }
 
     " specify theme : solarized or no theme(default)
-    let g:ifmicro_theme = "solarized"   
+    let g:ifmicro_theme = "molokai"   
     " specify the way to teriminal : xshell or ubuntu desktop teriminal(default)
     let g:ifmicro_connect_term_way = "xshell"
     " specify the color tune in theme `solatized`
