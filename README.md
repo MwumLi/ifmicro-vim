@@ -29,3 +29,11 @@
 
 1. vim-airline  
    美化状态栏和标签页
+   `]b` : 下一个标签页 
+   `[b` : 上一下标签页
+
+2. fecview  
+   文件编码探测, 转换  
+   设置 `g:ifmicro_encode_detect_enable` 为 1, 则开启自动编码探测
+   `<Leader>u` : 转化编码为 utf-8, 并保存  
+
